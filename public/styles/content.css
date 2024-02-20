@@ -1,0 +1,394 @@
+body{
+    background-color: #bd6f2f;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+/*Estilos para las categorias y sus cuadros*/
+#react-container{
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+    background-color: #bd6f2f;
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+.container-categorias{
+    width: 100%; /* Establece un ancho máximo para el contenedor */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: block;
+}
+
+#category-title{
+    font-size: 400%;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    
+}
+
+.btn a {
+    text-decoration: none; /* Elimina el subrayado de los enlaces dentro de los botones */
+    color:white;
+}
+
+#volverIndex,#volverUp{
+
+    margin-right: 40px; /* Ajusta el margen derecho */
+    margin-left: 40px; /* Ajusta el margen izquierdo */
+    margin-bottom: 10px;
+    display: inline-block; /* Asegúrate de que el botón se muestre como un bloque en línea */
+}
+/*-------------------------------------*/
+
+#bienvenido{
+    font-size: 700%;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    
+}
+
+#textoBienvenido{
+    font-size: 130%;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #8a4004;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    height: 100px;
+    
+}
+
+/* Estilos para la lista desordenada */
+.navbar-nav {
+
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#titleRobinas{
+
+    display: flex;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  
+}
+
+#titleHeader{
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    width: 100%; /* Establece un ancho máximo para el contenedor */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #8a4004;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+}
+
+
+/* Estilos para el footer */
+footer {
+   position: relative;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 40px;
+}
+/* Estilos para el título del footer */
+.titleFooter {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    text-align: center;
+
+}
+
+/* Estilos para el carrusel */
+#carouselExampleCaptions .carousel-item {
+    text-align: center; /* Centra el contenido dentro del carrusel */
+}
+
+#carouselExampleCaptions .carousel-item img {  /*Colocamos id y clase para no confundir con los demas carrouseles*/
+    max-width: 83.2%; /* Ajusta el ancho máximo de la imagen al tamaño del contenedor */
+    max-height: 650px; /* Establece una altura máxima para las imágenes */
+    display: block;
+    margin: auto; /* Centra la imagen horizontalmente */
+    margin-bottom: 40px; /*espacio que queremos dejar debajo */
+}
+
+#Categorias{
+    text-align:center; /* Centra el texto */
+    font-size: 300%; /* Tamaño de fuente */
+    color: white; /* Color del texto */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin-bottom: 40px; /*espacio que queremos dejar debajo */
+    
+}
+#carouselExampleAutoplaying .carousel-item img {
+    width: 320px;
+    height: 200px; /*determina el tamanho de una imagen, debe ser SIEMPRE en pixeles por que en % no deja el tamanho de las imagenes igual*/
+    display: block;
+    margin:auto;
+    margin-bottom: 40px; /*espacio que queremos dejar debajo */
+}
+
+
+#carouselExampleAutoplaying .carousel-item img:hover {
+    transform: scale(1.1); /* Aumenta en un 10% al pasar el mouse */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para la leyenda */
+    color: white; /* Color del texto en la leyenda */
+    padding: 20px; /* Espaciado interno en la leyenda */
+}
+
+.carousel-control-prev, .carousel-control-next {
+    color: white; /* Color de los controles de navegación */
+}
+
+/* Estilo para el título de la diapositiva */
+.carrouselTitle{
+
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 300%;
+}
+
+/* Estilo para el texto de la diapositiva */
+.carousel-text {
+    font-size: 18px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.footerTitle{
+    font-size: 20px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-align: center;
+    margin: auto;
+}
+
+#icon-title {
+    font-size: 18px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    text-align: center;
+
+}
+
+#icon p {
+    font-size: 12px; /* Tamaño de fuente */
+}
+
+#IconBlock {
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    text-align: center; /* Alinear texto al centro */
+}
+
+/*Cartas de los platos destacados*/
+.card-container {
+    display: flex;
+    justify-content: center;
+    max-width: 950px;
+    margin:auto;
+    margin-bottom: 40px;
+}
+  
+.card {
+    margin: 20px; /* Ajusta el margen entre las cartas según sea necesario */
+    width: 250px; /* Establece un ancho fijo para todas las cartas */
+}
+
+.card-body{
+    margin: auto;
+}
+
+.card img{
+    max-width: 100%;
+    height: 190px; /*Establecemos como tamanho predeterminado(si usamos ma-height es para establecer un tamanho maximo)*/
+}
+#cards-inicio .card-title{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    width: 100%;
+}
+  
+.card-text{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    justify-content: center;
+    width: 100%;
+}
+
+#navText{
+    font-size: 20px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color:white; 
+}
+
+#footerTextp{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: medium ;
+    color:white ;
+    text-align: center;
+}
+
+#listedFooter{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: medium ;
+    color:white ;
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/*customizacion empresa.ejs*/
+.empresa-list li{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: medium ;
+    color:white ;
+    text-align: left;
+}
+
+#empresa-title{
+    font-size: 400%;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    
+}
+
+.respuesta {
+    display: none; /* Oculta las respuestas inicialmente */
+    margin-top: 10px; /* Ajusta el margen superior para separar las respuestas de las preguntas */
+}
+
+.oculta {
+    display: none; /* Asegura que las respuestas ocultas permanezcan ocultas */
+}
+
+
+/*---------------------------------- */
+
+.text-center{
+    margin: auto;
+}
+
+/* Estilos para la barra de navegación */
+.head {
+    position: relative; /* Asegura que los elementos posicionados dentro de esta clase se ajusten correctamente */
+  }
+  
+  /* Estilos para los iconos de redes sociales */
+.social_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-40%);
+    right: 10px; /* Ajusta este valor según tu preferencia para la distancia desde el borde derecho */
+    list-style: none;
+    padding: 0;
+}
+  
+.social_icon li {
+    display: inline-block;
+    margin-bottom: 10px; /* Espacio entre los iconos */
+}
+
+.social_icon li:last-child {
+    margin-right: 0; /* Eliminar el margen derecho del último ícono */
+}
+
+.social_icon li a {
+    display: block;
+    width: 40px; /* Ancho del icono */
+    height: 40px; /* Alto del icono */
+    line-height: 40px; /* Alinear el texto verticalmente */
+    text-align: center;
+    border-radius: 50%; /* Para hacer los iconos circulares */
+    color: #fff; /* Color del icono */
+    font-size: 20px; /* Tamaño del icono */
+    transition: background-color 0.3s ease; /* Efecto de transición al pasar el mouse */
+    transform: scale(1.1); /* Aumenta en un 10% al pasar el mouse */
+}
+  
+.social_icon li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Cambia el color de fondo al pasar el mouse */
+}
+  
+  /* Estilos adicionales para los iconos si lo deseas */
+  .social_icon li a ion-icon {
+    vertical-align: middle;
+  }
+  
+
+/*Estilos plantilla sigunp  y user*/
+.btn-outline-secondary,
+.btn-outline-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.btn-outline-secondary svg,
+.btn-outline-primary svg {
+    margin-left: 7px; /* Espacio entre el icono y el texto */
+}
+

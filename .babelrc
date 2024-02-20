@@ -1,0 +1,7 @@
+{
+    "presets": [
+      "@babel/preset-env", // Preset para compatibilidad con JavaScript moderno
+      "@babel/preset-react" // Preset para React
+    ]
+  }
+  

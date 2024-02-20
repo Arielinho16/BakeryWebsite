@@ -1,0 +1,125 @@
+.navbar{
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  background-color: #8a4004;
+  display: flex;
+  padding: 3px;
+  width: 100%; /* Ancho del 100% */
+  height: 100px; /* Altura de 70px (ajusta según sea necesario) */
+}
+  
+  nav > h1 { /*cambiar*/
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+  }
+  
+  .nav-list {
+    display: flex;
+    justify-content: space-around;
+    width: 35%;
+    list-style: none;
+    cursor: pointer;
+  }
+  
+  /******** Items List ******/
+  
+  .items-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /****** Item  box *********/
+  .item-box {
+    background-color: #f9f9f9;
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+    height:200px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+.item-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.item-quantity {
+  color: #fff;
+  background-color: #bd6f2f;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.item-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+  
+.item-price {
+  color: #007bff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item-add-button {
+    background-color: #5cb85c;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    font-size: 11px;
+    cursor: pointer;
+    height: 20px;
+
+  }
+  
+.item-minus-button {
+    background-color: #d9534f;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
+.item-plus-button {
+    background-color: #337ab7;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+.item-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+
+  
+  
+  /****** Shopping Cart ********/
+  
+  .cart-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+  }
+  
+  .cart-count {
+    background-color: black;
+    border-radius: 20px;
+    padding: 8px;
+    margin-top: 15px;
+  }

@@ -1,0 +1,66 @@
+<%- include("partials/header.ejs") %>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robina's Bakery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/content.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat&family=Great+Vibes&family=Kanit:wght@300;400&family=Pixelify+Sans&family=VT323&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400..900&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 id="empresa-title">Preguntas Frecuentes</h1>
+        <div class="col-lg-6 mx-auto">
+            <ul class="empresa-list">
+                <li class="pregunta">¿Cuáles son las opciones de café que ofrecen y cuál es su recomendación?
+                    <div class="respuesta oculta">
+                        <p>Nuestras opciones de café incluyen espresso, americano, cappuccino, latte, y más. Nuestra recomendación es probar nuestro delicioso latte con un toque de caramelo.</p>
+                    </div>
+                </li>
+                <li class="pregunta">¿Tienen opciones de café descafeinado o para personas con intolerancias/alergias alimentarias?
+                    <div class="respuesta oculta">
+                        <p>Sí, ofrecemos café descafeinado y también tenemos alternativas sin lácteos para personas con intolerancias o alergias alimentarias.</p>
+                    </div>
+                </li>
+                <li class="pregunta">¿Ofrecen opciones de alimentos para acompañar el café más saludables?
+                    <div class="respuesta oculta">
+                        <p>Sí, contamos con un apartado de platos saludables en el local, puedes verlo en nuestro Menú o en el Inicio en Nuestras Categorías en la opción Saludables.</p>
+                    </div>
+                </li>
+                <li class="pregunta">¿Cuál es el horario de atención y los días de la semana en que están abiertos?
+                    <div class="respuesta oculta">
+                        <p>Domingo a Jueves de 07:00 hs. a 22:00 hs. Viernes y Sábados de 07:00 hs. a 23:00 hs.</p>
+                    </div>
+                </li>
+            </ul>
+
+            
+        </div>
+    </div>
+    
+
+       <!-- SCRIPT PARA DESPLEGAR LAS RESPUESTAS A LAS PREGUNTAS MAS FRECUENTES -->
+    <script>
+        $(document).ready(function(){
+            $(".pregunta").click(function(){
+                // Encuentra el elemento hermano siguiente (que es la respuesta) y toogle su visibilidad
+                $(this).next(".respuesta").toggleClass("oculta");
+            });
+        });
+    </script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+<%- include("partials/footer.ejs") %>

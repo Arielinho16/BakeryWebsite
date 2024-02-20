@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robina's Bakery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/content.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat&family=Great+Vibes&family=Kanit:wght@300;400&family=Pixelify+Sans&family=VT323&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+
+  <!-- Importa los scripts de Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="head">
+    <nav class="navbar navbar-expand-lg bd-navbar sticky-top">
+      <div id="titleRobinas" class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+        <!-- Nombre de la cafetería -->
+        <h1 id="titleHeader" href="/" aria-label="Robina's">Robina's</h1>
+        <div class="navbar-brand p-0 me-0 me-lg-2">
+          <a href="/" aria-label="Robina's">
+            <img src="images/cafeteria.png" alt="Robina's" width="100" height="80"> 
+          </a>
+        </div>
+
+        <div class="bd-navbar-toggle">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" aria-controls="bdSidebar" aria-label="Toggle docs navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+            </svg>
+            <span class="d-none fs-6 pe-1">Browse</span>
+          </button>
+        </div>
+
+        <div class="d-flex">
+          <form class="bd-search mx-lg-2" id="docsearch" data-bd-docs-version="5.3">
+            <input class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+          </form>
+
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-label="Toggle navigation">
+            <svg class="bi" aria-hidden="true"><use xlink:href="#three-dots"></use></svg>
+          </button>
+        </div>
+
+        <div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+           
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar" data-bs-target="#bdNavbar"></button>
+          </div>
+
+          <div class="offcanvas-body p-4 pt-0 p-lg-0" id="headerItems">
+            <hr class="d-lg-none text-white-50">
+            <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
+              <li class="nav-item col-6 col-lg-auto">
+                <a class="nav-link py-2 px-0 px-lg-2 active" id="navText" href="/">Inicio</a>
+              </li>
+              <li class="nav-item col-6 col-lg-auto">
+                <a class="nav-link py-2 px-0 px-lg-2" id="navText" href="/menu">Menú</a>
+              </li>
+              <li class="nav-item col-6 col-lg-auto">
+                <a class="nav-link py-2 px-0 px-lg-2" id="navText" href="/nosotros">Nosotros</a>
+              </li>
+              <li class="nav-item col-6 col-lg-auto">
+                <a class="nav-link py-2 px-0 px-lg-2" id="navText" href="/contacto">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ul class="social_icon">
+        <li><a href="/user" target="_blank"><ion-icon name="person-circle-outline"></ion-icon></a></li> <!-- Reemplaza "URL_DEL_PERFIL" con la URL de tu perfil -->
+        <li><a href="https://www.facebook.com/ariel.vallejos.1804" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="https://www.instagram.com/ariel_vallejos19/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=NUMERO_DE_TELEFONO" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+    </ul>
+    
+    </nav>
+  </header>
+
+</body>
+
+</html>

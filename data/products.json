@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "name": "Capuccino Tradicional",
+      "price": 16500,
+      "imgUrl": "./images/capuccino.png"
+    },
+    {
+      "id": 2,
+      "name": "Canasta Tradicional",
+      "price": 80000,
+      "imgUrl": "./images/canasta.png"
+    },
+    {
+      "id": 3,
+      "name": "Pastel de Zanahoria",
+      "price": 15000,
+      "imgUrl": "./images/pastel_de_zanahoria.png"
+    },
+    {
+      "id": 4,
+      "name": "Alfajor",
+      "price": 5500,
+      "imgUrl": "./images/alfajores.png"
+    }
+  ]
