@@ -1,6 +1,6 @@
 import React from "react";
 import { ItemList } from "./components/ItemList";
-import { Navbar } from "./components/NavBar";
+import { NavBar } from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ShoppingCart } from "./components/ShoppingCart";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
@@ -9,9 +9,9 @@ export const App = () => {
   return (
     <ShoppingCartProvider>
       <Router>
-        <Navbar />
+        <NavBar />
         <Routes>
-         <Route path="/menu" element={<ItemList category="inicio" />} />
+         <Route path="/" element={<ItemList category="inicio" />} />
           <Route path="/menu" element={<ItemList category="menu" />} />
           <Route path="/dulces" element={<ItemList category="dulces" />} />
           <Route path="/cafe" element={<ItemList category="cafe" />} />

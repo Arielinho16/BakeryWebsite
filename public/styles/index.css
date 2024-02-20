@@ -6,7 +6,8 @@
   width: 100%; /* Ancho del 100% */
   height: 100px; /* Altura de 70px (ajusta según sea necesario) */
 }
-  
+
+
   nav > h1 { /*cambiar*/
     font-family: "Great Vibes", cursive;
     font-weight: 400;
@@ -21,7 +22,18 @@
     list-style: none;
     cursor: pointer;
   }
+
+.nav-link, .nav-item{
+  font-size: 20px;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color:white; 
+}
+
+
   
+
   /******** Items List ******/
   
   .items-list {

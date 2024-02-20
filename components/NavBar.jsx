@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/ShoppingCartContext";
 import { FaShoppingCart } from "react-icons/fa"; // Importa el icono de carrito de React Icons
 
-const Navbar = () => {
+export const NavBar = () => {
   const [cart, setCart] = useContext(CartContext);
 
   const quantity = cart.reduce((acc, curr) => {
@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Robina's
@@ -43,22 +43,22 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to={"/"}>
                 Inicio
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/menu">
+              <Link className="nav-link" to={"/menu"}>
                 Menú
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/nosotros">
+              <Link className="nav-link" to={"/nosotros"}>
                 Nosotros
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contacto">
+              <Link className="nav-link" to={"/contacto"}>
                 Contacto
               </Link>
             </li>
@@ -76,5 +76,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;
