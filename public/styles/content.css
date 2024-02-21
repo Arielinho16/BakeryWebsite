@@ -63,7 +63,7 @@ body{
 }
 
 /* Estilos para la barra de navegación */
-.navbar {
+#NavBarBoot .navbar {
     background-color: #8a4004;
     background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
@@ -72,7 +72,7 @@ body{
 }
 
 /* Estilos para la lista desordenada */
-.navbar-nav {
+#NavBarBoot .navbar-nav {
 
     display: flex;
     justify-content: center;

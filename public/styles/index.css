@@ -1,38 +1,42 @@
-.navbar{
-  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
-  background-color: #8a4004;
+.navbar {
   display: flex;
+  justify-content: space-between; /* Distribuye los elementos a los extremos */
+  align-items: center; /* Centra verticalmente los elementos */
   padding: 3px;
   width: 100%; /* Ancho del 100% */
-  height: 100px; /* Altura de 70px (ajusta según sea necesario) */
+  height: 100px; /* Altura de 100px (ajusta según sea necesario) */
 }
 
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
 
-  nav > h1 { /*cambiar*/
-    font-family: "Great Vibes", cursive;
-    font-weight: 400;
-    font-style: normal;
-    color: white;
-  }
-  
-  .nav-list {
-    display: flex;
-    justify-content: space-around;
-    width: 35%;
-    list-style: none;
-    cursor: pointer;
-  }
+.navbar-right .navbar-collapse {
+  justify-content: flex-end; /* Alinea los elementos a la derecha */
+}
 
-.nav-link, .nav-item{
-  font-size: 20px;
+.nav-item {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-style: normal;
-  color:white; 
+  color: white;
+  font-size: 30px;
 }
 
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+  list-style: none;
+  cursor: pointer;
+}
 
-  
+.navbar .icon {
+  margin: 0 10px; /* Espacio entre los íconos y el texto */
+  color: white; /* Color de los íconos */
+}
 
   /******** Items List ******/
   
@@ -123,14 +127,16 @@
   
   /****** Shopping Cart ********/
   
-  .cart-container {
+.cart-container {
     display: flex;
     justify-content: center;
     margin: 30px;
   }
   
-  .cart-count {
+
+.cart-count {
     background-color: black;
+    color: white;
     border-radius: 20px;
     padding: 8px;
     margin-top: 15px;
