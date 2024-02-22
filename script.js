@@ -1,5 +1,21 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { auth } from 'express-openid-connect';
+import dotenv from "dotenv";
+dotenv.config();
+
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUERBASEURL,
+
+};
+
+
 
 /*const db = new pg.Client({
   user: "postgres",
@@ -17,6 +33,9 @@ const port = 3000;
 // Configuración de Express
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
 
 
 app.get("/", async (req,res) =>{
@@ -39,13 +58,12 @@ app.get("/empresa", (req, res) => {
   res.render("empresa.ejs");
 });
 
-app.get("/user", (req, res) => {
-  res.render("user.ejs");
+app.get('/user', (req, res) => {
+
+  res.render("user.ejs",{title: "Express Demo",
+  isAuthenticated: req.oidc.isAuthenticated()});
 });
 
-app.get("/signup", (req, res) => {
-  res.render("signup.ejs");
-});
 
 app.get("/salados", async (req,res) =>{
   res.render("salados.ejs");
