@@ -60,8 +60,10 @@ app.get("/empresa", (req, res) => {
 
 app.get('/user', (req, res) => {
 
-  res.render("user.ejs",{title: "Express Demo",
-  isAuthenticated: req.oidc.isAuthenticated()});
+  res.render("user.ejs",{
+  isAuthenticated: req.oidc.isAuthenticated(),
+  user: req.oidc.user,
+  });
 });
 
 

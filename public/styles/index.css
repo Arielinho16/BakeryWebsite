@@ -53,16 +53,19 @@
     margin: 20px;
     padding: 20px;
     width: 200px;
-    height:200px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
+    height:250px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #000800;
 }
 .item-image {
-  width: 100%;
-  height: auto;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   margin-bottom: 10px;
+  border: 1px solid whitesmoke;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #000800;
 }
 
 .item-quantity {
@@ -72,12 +75,15 @@
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 14px;
+  border: 1px solid whitesmoke;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #000800;
 }
 
 .item-title {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: bold;
-  color: #333;
+  color: black;
   margin-bottom: 5px;
 }
   
@@ -88,15 +94,21 @@
 }
 
 .item-add-button {
-    background-color: #5cb85c;
-    border-radius: 5px;
-    color: #fff;
-    border: none;
-    font-size: 11px;
-    cursor: pointer;
-    height: 20px;
+  margin: 0 auto;
+  background-color: #5d2417;
+  height: 20px;
+  padding: 0.5em;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #000800;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 11px;
+  width: 100%;
+}
 
-  }
+    
   
 .item-minus-button {
     background-color: #d9534f;
@@ -105,15 +117,24 @@
     border: none;
     font-size: 11px;
     cursor: pointer;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #000800;
+    margin-left: 5px;
+
   }
   
 .item-plus-button {
     background-color: #337ab7;
+    margin-right: 5px;
     border-radius: 5px;
     color: #fff;
     border: none;
     font-size: 11px;
     cursor: pointer;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #000800;
   }
 
 .item-description {

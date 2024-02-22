@@ -1,22 +1,67 @@
+<%- include ("partials/header.ejs") %>
 <html>
     <head> 
 
-        <title><%= title %></title>
+        <title>Robina's Bakery</title>
         <link rel="stylesheet" href="/styles/content.css">
 
     </head>
 
     <body>
-        <ul>
-                <% if (!isAuthenticated) { %>
-                <li><a href="/login/"> LOGIN </a></li>
-                <% } else {%>
-                <li><a href="/logout/"> LOGOUT</a></li>
-                <%  } %>
 
-        </ul>
-        <h1><%= title %></h1>
-        <p>Welcome to <%= title %></p>
+        <% if (!isAuthenticated) { %>
+            <h1 class="userTitle">Centro de usuarios Robina's</h1>
+            <img class="profile" src="images/usuarios-online.png" alt="robina's local photo">
+            <p class="userText">Inicia sesión aqui abajo, si aun no cuentas con una cuenta puedes registrarte y formar parte de nuestra dulce comunidad</p>  
+        <% }  else { %>
+
+            <h1 class="bienvenidoUser">Bienvenido/a  <%= user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1) %>  a la comunidad Robina's!</h1>
+            <% if(user) { %>
+                <div class="profileInfo">
+                    <img src= "<%= user.picture %>" />
+                    <p class="name">
+                        <%= user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1) %>
+                    </p>
+                </div>
+            <% } %>
+
+            <% } %>
+
+        <div class="centered-button">
+            <ul class="userRegister">
+
+                    <% if (!isAuthenticated) { %>
+                     
+                    <button class="btn btn-primary" type="button" id="buttonIn">Iniciar sesión</button>
+                    <button class="btn btn-primary" type="button" id="buttonRegister">Registrarse</button>
+                    <% } else { %>
+
+                    <a href="/">Ir al inicio</a>
+                    <a href="/logout/"> Cerrar sesión</a>
+                    <a href="/menu"> Ir al Menú</a>
+                    
+                    <% } %>
+
+            </ul>     
+        </div>
+
+        <script>
+
+            const regButtonIn = document.getElementById("buttonIn");
+            const buttonRegister = document.getElementById("buttonRegister");
+            
+
+            regButtonIn.addEventListener("click",function(){
+                window.location.href = "/login/"; // Redirigimos a la página de login
+            });
+
+            regButtonIn.addEventListener("click",function(){
+                window.location.href = "/login/"; // Redirigimos a la página de login
+            });
+
+        </script>
 
     </body>
 </html>
+
+<%- include ("partials/footer.ejs") %>
