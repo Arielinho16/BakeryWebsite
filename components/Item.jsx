@@ -49,8 +49,8 @@ export const Item = ({ name, price, id, imgUrl }) => {
         <div className="item-quantity">{quantityPerItem}</div>
       )}
 
-      <div>{name}</div>
-      <img src={imgUrl} width="80" height="55" />
+      <div className="name-box">{name}</div>
+      <img src={imgUrl} width="120" height="100" />
       <div className="item-price">${price}</div>
 
       {quantityPerItem === 0 ? (

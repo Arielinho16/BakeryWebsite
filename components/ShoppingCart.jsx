@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CartContext } from "../contexts/ShoppingCartContext";
+import CheckoutForm from "./CheckoutForm";
 
 export const ShoppingCart = () => {
   const [cart, setCart] = useContext(CartContext);
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false); // Definir showCheckoutForm como una variable de estado
 
   const quantity = cart.reduce((acc, curr) => {
     return acc + curr.quantity;
@@ -13,13 +15,22 @@ export const ShoppingCart = () => {
     0
   );
 
+  const handleProceedToCheckout = () => {
+    // Aquí puedes manejar la lógica para proceder al pago, 
+    // como mostrar el formulario de pago, abrir un modal, etc.
+    // Puedes usar un estado local para mostrar/ocultar el formulario.
+    // Por ejemplo:
+    setShowCheckoutForm(true);
+  };
+
   return (
     <div className="cart-container">
       <div>
         <div>Artículos: {quantity}</div>
         <div>Total: {totalPrice}₲</div>
-        <button onClick={() => console.log(cart)}>Revisar</button>
+        <button onClick={handleProceedToCheckout}>Proceder al Pago</button>
       </div>
+      {showCheckoutForm && <CheckoutForm totalPrice={totalPrice} />}
     </div>
   );
 };

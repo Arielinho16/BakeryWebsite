@@ -2,8 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { auth } from 'express-openid-connect';
 import dotenv from "dotenv";
+
+import Stripe from "stripe"; // Cambiado a import from
+import cors from "cors"; // Cambiado a import from
+
 dotenv.config();
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // Utilizando la variable de entorno para la clave secreta de Stripe
 
 const config = {
   authRequired: false,
@@ -14,8 +19,6 @@ const config = {
   issuerBaseURL: process.env.ISSUERBASEURL,
 
 };
-
-
 
 /*const db = new pg.Client({
   user: "postgres",
@@ -33,6 +36,36 @@ const port = 3000;
 // Configuración de Express
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+
+
+// Implementamos cors para recibir front de metodo de pago
+app.use(cors({ origin: "http://localhost:3000" }));
+app.use(bodyParser.json()); // Utilizando bodyParser.json() en lugar de express.json()
+
+app.post("/api/checkout", async (req, res) => {
+  // you can get more data to find in a database, and so on
+  const { id, amount } = req.body;
+
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "BRL",
+      description: "A menu item",
+      payment_method: id,
+      confirm: true, //confirm the payment at the same time
+    });
+
+    console.log(payment);
+
+    return res.status(200).json({ message: "Successful Payment" });
+  } catch (error) {
+    console.log(error);
+    return res.json({ message: error.raw.message });
+  }
+});
+
+//hasta aqui el codigo de metodo de pago
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));

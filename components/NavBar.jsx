@@ -24,8 +24,8 @@ export const NavBar = () => {
   };
 
   useEffect(() => {
-    // Verifica si la ruta actual es /menu y actualiza el estado para mostrar u ocultar el enlace "Volver"
-    setShowBackLink(location.pathname !== "/menu");
+    // Verifica si la ruta actual es /cart y nos muestra el boton Volver solo si estamos en el carrito
+    setShowBackLink(location.pathname === "/cart");
   }, [location]);
 
   return (
@@ -37,7 +37,7 @@ export const NavBar = () => {
             {showBackLink && (
               <li className="nav-item">
                 <Link to={"/menu"} className="nav-link" style={navStyles}>
-                  Volver 
+                  Volver
                   <SlActionUndo style={cartIconStyles} />
                 </Link>
               </li>
