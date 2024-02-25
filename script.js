@@ -41,29 +41,20 @@ app.use(express.urlencoded({ extended: false }));
 
 // Implementamos cors para recibir front de metodo de pago
 app.use(cors({ origin: "http://localhost:3000" }));
-app.use(bodyParser.json()); // Utilizando bodyParser.json() en lugar de express.json()
+app.use(bodyParser.json());
 
-app.post("/api/checkout", async (req, res) => {
-  // you can get more data to find in a database, and so on
-  const { id, amount } = req.body;
 
-  try {
-    const payment = await stripe.paymentIntents.create({
-      amount,
-      currency: "BRL",
-      description: "A menu item",
-      payment_method: id,
-      confirm: true, //confirm the payment at the same time
-    });
-
-    console.log(payment);
-
-    return res.status(200).json({ message: "Successful Payment" });
-  } catch (error) {
-    console.log(error);
-    return res.json({ message: error.raw.message });
-  }
+app.get("/checkout", (req, res) => {
+  res.render("checkout.ejs");
 });
+ 
+app.post("/api/checkout", (req, res) => {
+  const { quantity, totalPrice } = req.body;
+  console.log("Datos recibidos en el backend:", { quantity, totalPrice });
+  // Renderiza la plantilla checkout.ejs con los datos recibidos
+  res.render("checkout.ejs", { quantity, totalPrice });
+});
+
 
 //hasta aqui el codigo de metodo de pago
 

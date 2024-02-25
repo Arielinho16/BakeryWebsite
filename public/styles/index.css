@@ -1,20 +1,19 @@
 .navbar {
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos a los extremos */
-  align-items: center; /* Centra verticalmente los elementos */
+  justify-content: space-between;
+  align-items: center;
   padding: 3px;
-  width: 100%; /* Ancho del 100% */
-  height: 100px; /* Altura de 100px (ajusta según sea necesario) */
+  width: 100%;
+  height: 100px;
 }
 
-.navbar-left,
 .navbar-right {
   display: flex;
   align-items: center;
 }
 
 .navbar-right .navbar-collapse {
-  justify-content: flex-end; /* Alinea los elementos a la derecha */
+  justify-content: flex-end;
 }
 
 .nav-item {
@@ -34,14 +33,12 @@
 }
 
 .navbar .icon {
-  margin: 0 10px; /* Espacio entre los íconos y el texto */
-  color: white; /* Color de los íconos */
+  margin: 0 10px;
+  color: white;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #000800;
 }
-
-.nav-link{
-  background-color: #000800;
-}
-
   /******** Items List ******/
   
   .items-list {
@@ -169,4 +166,7 @@
     border-radius: 20px;
     padding: 8px;
     margin-top: 15px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #000800;
 }

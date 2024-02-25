@@ -1,36 +1,44 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../contexts/ShoppingCartContext";
-import CheckoutForm from "./CheckoutForm";
+import axios from "axios"; // Importa axios para hacer solicitudes HTTP
 
 export const ShoppingCart = () => {
   const [cart, setCart] = useContext(CartContext);
-  const [showCheckoutForm, setShowCheckoutForm] = useState(false); // Definir showCheckoutForm como una variable de estado
 
-  const quantity = cart.reduce((acc, curr) => {
-    return acc + curr.quantity;
-  }, 0);
-
+  const quantity = cart.reduce((acc, curr) => acc + curr.quantity, 0);
   const totalPrice = cart.reduce(
     (acc, curr) => acc + curr.quantity * curr.price,
     0
   );
-
-  const handleProceedToCheckout = () => {
-    // Aquí puedes manejar la lógica para proceder al pago, 
-    // como mostrar el formulario de pago, abrir un modal, etc.
-    // Puedes usar un estado local para mostrar/ocultar el formulario.
-    // Por ejemplo:
-    setShowCheckoutForm(true);
+  
+  const handleProceedToCheckout = async () => {
+    try {
+      console.log("Cantidad de productos:", quantity);
+      console.log("Precio total:", totalPrice);
+      // Envía los valores de quantity y totalPrice al backend
+      await axios.post("/api/checkout", { quantity, totalPrice });
+  
+      // Redirige al usuario a la página de checkout después de recibir la respuesta del backend
+      window.location.href = "/checkout";
+  
+    } catch (error) {
+      console.error("Error al enviar datos al backend:", error);
+    }
   };
+
+  const handleProceedToBack = () => {
+    window.location.href = "/menu";
+
+  }
 
   return (
     <div className="cart-container">
       <div>
-        <div>Artículos: {quantity}</div>
+        <div>Productos: {quantity}</div>
         <div>Total: {totalPrice}₲</div>
+        <button onClick={handleProceedToBack}>Volver al Menú</button>
         <button onClick={handleProceedToCheckout}>Proceder al Pago</button>
       </div>
-      {showCheckoutForm && <CheckoutForm totalPrice={totalPrice} />}
     </div>
   );
 };

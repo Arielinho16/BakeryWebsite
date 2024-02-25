@@ -23,6 +23,7 @@ export const App = () => {
           <Route path="/pasteles" element={<ItemList category="pasteles" />} />
           <Route path="/saludables" element={<ItemList category="saludables" />} />
           <Route path="/cart" element={<ShoppingCart />} />
+           
         </Routes>
       </Router>
     </ShoppingCartProvider>

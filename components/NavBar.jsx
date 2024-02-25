@@ -31,20 +31,6 @@ export const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        <div className="navbar-left">
-          <ul className="navbar-nav">
-            {/* Renderizar el enlace "Volver" solo si showBackLink es true */}
-            {showBackLink && (
-              <li className="nav-item">
-                <Link to={"/menu"} className="nav-link" style={navStyles}>
-                  Volver
-                  <SlActionUndo style={cartIconStyles} />
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-
         <div className="navbar-right">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav">
