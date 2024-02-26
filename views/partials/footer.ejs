@@ -17,7 +17,7 @@
 
 <body>
   
-  <div class="container">
+  <div id="footer-container" class="container">
     <footer class="py-5">
       <div class="text-center">
         <div class="row">
@@ -88,7 +88,7 @@
             </ul>
           </div>
     
-          <div class="col-md-5 offset-md-1 mb-3">
+          <div id="boletin-card" class="col-md-5">
             <form>
               <h5 id="boletin" class="footerTitle">Suscríbete a nuestro boletín.</h5>
               <p  id="boletin" >Obtén las ultimas novedades acerca de nuestros productos a tu correo.</p>
@@ -99,26 +99,23 @@
               </div>
             </form>
           </div>
+          
         </div>
-    
-        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-        </script>
+        <div style="border-top:  1px solid white; width:  100%;margin-right: 400px;margin-top: 20px;"></div> <!-- Línea divisoria personalizada -->
+            <div id="copyright-footer" class="py-4 my-4 ">
 
-    
-        <p id="copyright" class="copy"></p>
-        <script>
-          // Get the current year
-          var currentYear = new Date().getFullYear();
-      
-          // Update the copyright text with the current year
-          document.getElementById("copyright").innerText = "©" + currentYear + " Robina's Bakery. All rights reserved.";
-        </script>
-          <ul class="list-unstyled d-flex">
-            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-          </ul>
-        </div>
+              <p id="copyright" class="copy"></p>
+              <p id="hosted">Hosted by Ariel made in Asunción</p>
+              <script>
+                // Get the current year
+                var currentYear = new Date().getFullYear();
+            
+                // Update the copyright text with the current year
+                document.getElementById("copyright").innerText = "©" + currentYear + " Robina's Bakery. All rights reserved." ;
+              </script>
+
+
+            </div>
         </div>
       </footer>
     </div>

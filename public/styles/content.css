@@ -21,15 +21,6 @@ body{
     display: block;
 }
 
-#category-title{
-    font-size: 400%;
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: white;
-    text-align: center;
-    
-}
 
 .btn a {
     text-decoration: none; /* Elimina el subrayado de los enlaces dentro de los botones */
@@ -101,37 +92,6 @@ body{
     color: white;
 }
 
-/* Estilos para el contenedor principal */
-.container {
-    width: 100%; /* Establece un ancho máximo para el contenedor */
-    margin: auto; /* Centra el contenedor horizontalmente */
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: #8a4004;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
-}
-
-
-/* Estilos para el footer */
-footer {
-   position: relative;
-   justify-content: center;
-   align-items: center;
-   margin-bottom: 40px;
-}
-/* Estilos para el título del footer */
-.titleFooter {
-    font-family: "Great Vibes", cursive;
-    font-weight: 400;
-    font-style: normal;
-    color: white;
-    text-align: center;
-
-}
-
 /* Estilos para el carrusel */
 #carouselExampleCaptions .carousel-item {
     text-align: center; /* Centra el contenido dentro del carrusel */
@@ -142,7 +102,8 @@ footer {
     max-height: 650px; /* Establece una altura máxima para las imágenes */
     display: block;
     margin: auto; /* Centra la imagen horizontalmente */
-    margin-bottom: 40px; /*espacio que queremos dejar debajo */
+    margin-bottom: 100px; /*espacio que queremos dejar debajo */
+    border: 2px solid whitesmoke;
 }
 
 #Categorias{
@@ -161,12 +122,19 @@ footer {
     height: 200px; /*determina el tamanho de una imagen, debe ser SIEMPRE en pixeles por que en % no deja el tamanho de las imagenes igual*/
     display: block;
     margin:auto;
-    margin-bottom: 40px; /*espacio que queremos dejar debajo */
+    margin-top: 20px;
+    margin-bottom: 60px; /*espacio que queremos dejar debajo */
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px #000800;
 }
 
 
 #carouselExampleAutoplaying .carousel-item img:hover {
     transform: scale(1.1); /* Aumenta en un 10% al pasar el mouse */
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px #000800;
 }
 
 .carousel-caption {
@@ -234,7 +202,7 @@ footer {
     justify-content: center;
     max-width: 950px;
     margin:auto;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
   
 .card {
@@ -247,8 +215,8 @@ footer {
 }
 
 .card img{
-    max-width: 100%;
-    height: 190px; /*Establecemos como tamanho predeterminado(si usamos ma-height es para establecer un tamanho maximo)*/
+    width: 100%;
+    height: 160px; /*Establecemos como tamanho predeterminado(si usamos ma-height es para establecer un tamanho maximo)*/
 }
 #cards-inicio .card-title{
     font-family: "Playfair Display", serif;
@@ -256,14 +224,40 @@ footer {
     font-style: normal;
     width: 100%;
 }
+
+.card-title, .card-text {
+    max-width:  90%; /* Ajusta según sea necesario */
+    margin: auto; /* Centra el texto */
+}
   
+.list-group-flush {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:  100%; /* Asegura que el contenedor ocupe todo el espacio disponible */
+}
+   
 .card-text{
     font-family: "Playfair Display", serif;
     font-optical-sizing: auto;
     font-style: normal;
     justify-content: center;
-    width: 100%;
 }
+
+#cards-inicio .btn {
+    padding:  10px  15px; /* Ajusta el padding para dar más espacio al texto */
+    background-color: #5d2417;
+    border: 1px solid whitesmoke;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px #000800;
+}
+  
+#cards-inicio .btn-primary {
+    margin-left:  10px; /* Añade un margen a la izquierda del botón */
+}
+  
+
+/*Fin de las Cartas de los platos destacados*/
 
 #navText{
     font-size: 20px;
@@ -493,4 +487,60 @@ footer {
     box-shadow: 5px 5px 5px #000800;
     color: white;
     text-decoration: none;
+}
+
+/* Estilos para el footer */
+
+.container {
+    width:  100%; /* Establece un ancho máximo para el contenedor */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    position: relative;
+    background-color: #8a4004;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+}
+
+ /* Estilos para el título del footer */
+ #footer-container .titleFooter {
+     font-family: "Great Vibes", cursive;
+     font-weight: 400;
+     font-style: normal;
+     color: white;
+     text-align: center;
+ 
+ }
+
+ 
+#footer-container .text-center{
+    display: flex; /* Añade display flex para usar Flexbox */
+    flex-direction: column; /* Alinea los elementos en columna */
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    width:  100%; /* Asegúrate de que el elemento ocupe todo el ancho disponible */
+    margin-left: 200px;
+    margin-right: 200px;
+ }
+
+#boletin-card{
+    display: flex; /* Añade display flex para usar Flexbox */
+    flex-direction: column; /* Alinea los elementos en columna */
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    width:  100%; /* Asegúrate de que el elemento ocupe todo el ancho disponible */
+    margin-right: 10px;
+    margin-left: 180px;
+    margin-bottom: 20px;
+}
+
+#copyright,#hosted{
+    display: flex; /* Añade display flex para usar Flexbox */
+    flex-direction: column; /* Alinea los elementos en columna */
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    margin-right: 420px;
 }

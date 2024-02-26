@@ -110,9 +110,7 @@ app.get("/dulces", async (req,res) =>{
 app.get("/cafe", async (req,res) =>{
   res.render("cafe.ejs");
 });
-
  
-
 app.get("/jugos", async (req,res) =>{
   res.render("jugos.ejs");
 });
