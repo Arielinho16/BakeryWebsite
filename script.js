@@ -37,26 +37,30 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
+app.set('view engine', '.ejs');  // Configuración del motor de plantillas EJS
 
 
-// Implementamos cors para recibir front de metodo de pago
+
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
 
-app.get("/checkout", (req, res) => {
-  res.render("checkout.ejs");
+app.get('/checkout', (req, res) => {
+  res.render('checkout');
 });
  
-app.post("/api/checkout", (req, res) => {
-  const { quantity, totalPrice } = req.body;
-  console.log("Datos recibidos en el backend:", { quantity, totalPrice });
+app.post('/api/checkout', (req, res) => {
+  const  { quantity , totalPrice , productNamesAndQuantities}= req.body;
+  console.log("Datos recibidos en el backend:", { quantity});
+  console.log("Datos recibidos en el backend:", { totalPrice});
+  console.log("Datos recibidos en el backend:", { productNamesAndQuantities});
   // Renderiza la plantilla checkout.ejs con los datos recibidos
-  res.render("checkout.ejs", { quantity, totalPrice });
+  res.render('checkout', { quantity, totalPrice,productNamesAndQuantities }); // Asegúrate de pasar quantity y totalPrice aquí
+  
 });
 
 
-//hasta aqui el codigo de metodo de pago
+
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
@@ -106,6 +110,8 @@ app.get("/dulces", async (req,res) =>{
 app.get("/cafe", async (req,res) =>{
   res.render("cafe.ejs");
 });
+
+ 
 
 app.get("/jugos", async (req,res) =>{
   res.render("jugos.ejs");

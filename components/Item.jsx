@@ -16,7 +16,7 @@ export const Item = ({ name, price, id, imgUrl }) => {
           }
         });
       } else {
-        return [...currItems, { id, quantity: 1, price }];
+        return [...currItems, { id, quantity:  1, price, name, imgUrl }];
       }
     });
   };

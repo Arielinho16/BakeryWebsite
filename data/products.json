@@ -1,26 +1,38 @@
 [
-    {
-      "id": 1,
-      "name": "Capuccino Tradicional",
-      "price": 16500,
-      "imgUrl": "./images/capuccino.png"
-    },
-    {
-      "id": 2,
-      "name": "Canasta Tradicional",
-      "price": 80000,
-      "imgUrl": "./images/canasta.png"
-    },
-    {
-      "id": 3,
-      "name": "Pastel de Zanahoria",
-      "price": 15000,
-      "imgUrl": "./images/pastel_de_zanahoria.png"
-    },
-    {
-      "id": 4,
-      "name": "Alfajor",
-      "price": 5500,
-      "imgUrl": "./images/alfajores.png"
-    }
-  ]
+  {
+    "id":  1,
+    "name": "Capuccino Tradicional",
+    "price":  16500,
+    "imgUrl": "./images/capuccino.png",
+    "category": "cafe"
+  },
+  {
+    "id":  2,
+    "name": "Canasta Tradicional",
+    "price":  80000,
+    "imgUrl": "./images/canasta.png",
+    "category": "canasta"
+  },
+  {
+    "id":  3,
+    "name": "Pastel de Zanahoria",
+    "price":  15000,
+    "imgUrl": "./images/pastel_de_zanahoria.png",
+    "category": "pasteles"
+  },
+  {
+    "id":  4,
+    "name": "Alfajor",
+    "price":  5500,
+    "imgUrl": "./images/alfajores.png",
+    "category": "dulces"
+  },
+  {
+    "id":  5,
+    "name": "Espresso",
+    "price":  3000,
+    "imgUrl": "./images/expresso.png",
+    "category": "cafe"
+  }
+
+]

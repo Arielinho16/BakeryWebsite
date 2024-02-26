@@ -59,6 +59,7 @@
     border-radius: 5px;
     box-shadow: 5px 5px 5px #000800;
     margin-bottom: 30px;
+    
 }
 .item-box img {
   border-radius: 10px;
@@ -169,4 +170,59 @@
     border: 1px solid whitesmoke;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #000800;
+}
+
+
+.cart-title{
+  display: flex;
+  text-align:center; /* Centra el texto */
+  font-size: 300%; /* Tamaño de fuente */
+  color: white; /* Color del texto */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  margin-bottom: 40px; /*espacio que queremos dejar debajo */
+}
+
+.cart-text{
+  display: flex;
+  text-align:center; /* Centra el texto */
+  font-size: 150%; /* Tamaño de fuente */
+  color: white; /* Color del texto */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  margin-bottom: 40px; /*espacio que queremos dejar debajo */
+}
+
+.cart-box {
+  background-color: #f9f9f9;
+  margin: 20px;
+  padding: 20px;
+  width: 200px;
+  height:180px;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #000800;
+  margin-bottom: 30px;
+  
+}
+.cart-box img {
+border-radius: 10px;
+margin-bottom: 10px;
+border: 1px solid whitesmoke;
+border-radius: 3px;
+box-shadow: 2px 2px 2px #000800;
+}
+
+.category-title{
+  font-size: 400%;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+  text-align: center;
+  
 }
