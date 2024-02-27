@@ -8,6 +8,7 @@ body{
 #react-container{
     background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
     background-color: #bd6f2f;
+    margin-bottom: 110px;
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
@@ -164,27 +165,6 @@ body{
     font-style: normal;
 }
 
-.footerTitle{
-    font-size: 20px;
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    text-align: center;
-    margin: auto;
-}
-
-#icon-title {
-    font-size: 18px;
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: white;
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    text-align: center;
-
-}
-
 #icon p {
     font-size: 12px; /* Tamaño de fuente */
 }
@@ -276,19 +256,7 @@ body{
     text-align: center;
 }
 
-#listedFooter{
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-size: medium ;
-    color:white ;
-    position: relative;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+
 
 /*customizacion empresa.ejs*/
 .empresa-list li{
@@ -491,10 +459,8 @@ body{
 
 /* Estilos para el footer */
 
-.container {
-    width:  100%; /* Establece un ancho máximo para el contenedor */
-    margin: auto; /* Centra el contenedor horizontalmente */
-    position: relative;
+.container-fluid {
+    width: 100%; /* Cambia el ancho a 100% para que se expanda desde la esquina izquierda a la derecha */
     background-color: #8a4004;
     background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
     color: white;
@@ -502,29 +468,63 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 0px;
+    
 }
 
- /* Estilos para el título del footer */
- #footer-container .titleFooter {
-     font-family: "Great Vibes", cursive;
-     font-weight: 400;
-     font-style: normal;
-     color: white;
-     text-align: center;
- 
- }
+#footer-container .titleFooter {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    text-align: center;
+    font-size: 70px;
+    margin-left: 20px;
+}
 
- 
-#footer-container .text-center{
-    display: flex; /* Añade display flex para usar Flexbox */
-    flex-direction: column; /* Alinea los elementos en columna */
-    justify-content: center; /* Centra los elementos verticalmente */
-    align-items: center; /* Centra los elementos horizontalmente */
-    width:  100%; /* Asegúrate de que el elemento ocupe todo el ancho disponible */
-    margin-left: 200px;
-    margin-right: 200px;
- }
+
+#footer-block1, #footer-block2, #footer-block3, #footer-block4 {
+    display: flex;
+    justify-content: space-around; /* Alinea los bloques horizontalmente */
+    position: relative;
+    background-color: #5d2417;;
+    border: 1px solid whitesmoke;
+    box-shadow: 5px 5px 5px #000800;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    margin-left: 16px;
+    width: calc(100% - 40px); /* Ajusta el ancho de los bloques al 100% del contenedor del pie de página con el padding aplicado */
+}
+
+@media (min-width: 768px) {
+    #footer-block1, #footer-block2, #footer-block3, #footer-block4 {
+        width: calc(25% - 20px);
+    }
+}
+
+
+.footerTitle {
+    font-size: 28px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    width: 100%;
+    margin-top: 0; /* Elimina cualquier margen superior */
+    margin-bottom: auto; /* Ajusta el margen inferior a auto */
+    text-align: center;
+    
+}
+
+#listedFooter {
+    font-family: "Playfair Display", serif;
+    font-style: normal;
+    font-size: medium;
+    color: white;
+    width: 100%;
+    font-size: 18px;
+}
+
+
 
 #boletin-card{
     display: flex; /* Añade display flex para usar Flexbox */
@@ -533,8 +533,10 @@ body{
     align-items: center; /* Centra los elementos horizontalmente */
     width:  100%; /* Asegúrate de que el elemento ocupe todo el ancho disponible */
     margin-right: 10px;
-    margin-left: 180px;
+    margin-left: 350px;
     margin-bottom: 20px;
+    margin-top: 20px;
+
 }
 
 #copyright,#hosted{
@@ -542,5 +544,48 @@ body{
     flex-direction: column; /* Alinea los elementos en columna */
     justify-content: center; /* Centra los elementos verticalmente */
     align-items: center; /* Centra los elementos horizontalmente */
-    margin-right: 420px;
+
+}
+
+/* Containers antes del footer del Inicio*/
+
+#IconBlock1,#IconBlock2,#IconBlock3,#IconBlock4{
+    margin: 10px; /* Centra el contenedor horizontalmente */
+    position: relative;
+    background-color: #8a4004;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+    color: white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    justify-content: space-between; /* Esto separa los bloques de iconos */
+    width: 360px;
+    margin-left: 19.5px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #000800;
+    
+}
+
+#icon-title {
+    font-size: 18px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    text-align: center;
+}
+
+.icon-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Asegura que el texto esté centrado */
+    padding:  10px; /* Añade un poco de espacio alrededor del contenido */
+    width:  100%; /* Asegura que el contenido ocupe todo el ancho disponible */
 }
