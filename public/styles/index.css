@@ -209,3 +209,14 @@ box-shadow: 2px 2px 2px #000800;
   
 }
 
+.btn-success{
+    margin: 0 auto;
+    background-color: #5d2417;
+    width: 200px;
+    padding: 0.5em;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #000800;
+    color: white;
+    text-decoration: none;
+}

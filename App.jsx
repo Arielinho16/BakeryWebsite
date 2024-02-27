@@ -2,10 +2,15 @@ import React from "react";
 import { ItemList } from "./components/ItemList";
 import { NavBar } from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ShoppingCart} from "./components/ShoppingCart";
+import { ShoppingCart } from "./components/ShoppingCart";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
-import {Layout} from "./components/Layout";
+import { Layout } from "./components/Layout";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { CheckoutForm } from "./components/Checkout";
 
+// Agrega aquí tu clave pública de Stripe
+const stripePromise = loadStripe("pk_test_51OmmqBK4P6Uiq4axZvTPwvHJhu5JIHJB9zufHtZ2WmuWRwJqUH8iHOf9hNFug4XYA4kOvcD2Jqjp3nMzEMOMUv88000vxGvHGn");
 
 export const App = () => {
   return (
@@ -24,7 +29,12 @@ export const App = () => {
           <Route path="/pasteles" element={<Layout title="Cafés"><ItemList category="pasteles" /></Layout>} />
           <Route path="/saludables" element={<ItemList category="saludables" />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/checkout"/>
+          {/* Utiliza Elements de Stripe para envolver el componente CheckoutForm */}
+          <Route path="/checkout" element={
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          } />
         </Routes>
       </Router>
     </ShoppingCartProvider>

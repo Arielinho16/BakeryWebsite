@@ -31,7 +31,7 @@ const config = {
 //db.connect();
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Configuración de Express
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,24 +44,41 @@ app.set('view engine', 'ejs'); // Configuración del motor de plantillas EJS
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
-app.post('/api/checkout', (req, res) => {
+app.post("/api/checkout", async (req, res) => {
+  // you can get more data to find in a database, and so on
+  const { id, amount } = req.body;
+  console.log("Datos recibidos en el backend:", { id });
+  console.log("Datos recibidos en el backend:", { amount});
+
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "BRL",
+      description: "Bakery Product",
+      payment_method: id,
+      confirm: true, //confirm the payment at the same time
+      return_url: "http://localhost:3001", // Aquí debes proporcionar la URL a la que deseas redirigir al cliente
+    });
+
+    console.log(payment);
+
+    return res.status(302).header("Location", "http://localhost:3001").end();
+  } catch (error) {
+    console.log(error);
+    return res.json({ message: error.raw.message });
+  }
+ 
+});
+
+//Recibir datos del front
+app.post('/CheckoutForm', (req, res) => {
   const  { quantity , totalPrice , productNamesAndQuantities}= req.body;
   console.log("Datos recibidos en el backend:", { quantity});
   console.log("Datos recibidos en el backend:", { totalPrice});
   console.log("Datos recibidos en el backend:", { productNamesAndQuantities});
   // Renderiza la plantilla checkout.ejs con los datos recibidos
-  res.render('checkout', { quantity, totalPrice,productNamesAndQuantities }); // Asegúrate de pasar quantity y totalPrice aquí
   
 });
-
-
-app.get('/checkout', (req, res) => {
-  const  { quantity , totalPrice , productNamesAndQuantities}= req.body;
-  res.render('checkout',{ quantity, totalPrice,productNamesAndQuantities });
-});
-
-
-
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
@@ -87,6 +104,7 @@ app.get("/empresa", (req, res) => {
   res.render("empresa.ejs");
 });
 
+//Usuarios
 app.get('/user', (req, res) => {
 
   res.render("user.ejs",{
