@@ -37,18 +37,13 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
-app.set('view engine', '.ejs');  // Configuración del motor de plantillas EJS
+app.set('view engine', 'ejs'); // Configuración del motor de plantillas EJS
 
 
 
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
-
-app.get('/checkout', (req, res) => {
-  res.render('checkout');
-});
- 
 app.post('/api/checkout', (req, res) => {
   const  { quantity , totalPrice , productNamesAndQuantities}= req.body;
   console.log("Datos recibidos en el backend:", { quantity});
@@ -57,6 +52,12 @@ app.post('/api/checkout', (req, res) => {
   // Renderiza la plantilla checkout.ejs con los datos recibidos
   res.render('checkout', { quantity, totalPrice,productNamesAndQuantities }); // Asegúrate de pasar quantity y totalPrice aquí
   
+});
+
+
+app.get('/checkout', (req, res) => {
+  const  { quantity , totalPrice , productNamesAndQuantities}= req.body;
+  res.render('checkout',{ quantity, totalPrice,productNamesAndQuantities });
 });
 
 
@@ -93,7 +94,6 @@ app.get('/user', (req, res) => {
   user: req.oidc.user,
   });
 });
-
 
 app.get("/salados", async (req,res) =>{
   res.render("salados.ejs");

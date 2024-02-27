@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CartContext } from "../contexts/ShoppingCartContext";
 import { FaShoppingCart } from "react-icons/fa"; // Importa el icono de carrito de React Icons
-import { SlActionUndo } from "react-icons/sl";
+
 
 export const NavBar = () => {
   const location = useLocation(); // Obtén la ubicación actual de la ruta
@@ -29,7 +29,7 @@ export const NavBar = () => {
   }, [location]);
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav id="navbar-React" className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <div className="navbar-right">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">

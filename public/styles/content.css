@@ -1,6 +1,7 @@
-body{
+body,html{
     background-color: #bd6f2f;
     background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+    overflow-x: hidden; /* Bloquea el desplazamiento horizontal */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
@@ -88,10 +89,18 @@ body{
 
 #titleHeader{
     font-family: "Great Vibes", cursive;
-    font-weight: 400;
+    font-weight: 250px;
+    font-size: 50px;
     font-style: normal;
     color: white;
+    border: 2px solid whitesmoke;
+    border-radius: 100%;
+    box-shadow: 2px 2px 2px #000800;
+    margin-right: 40px;
+    padding: 10px;
+    
 }
+
 
 /* Estilos para el carrusel */
 #carouselExampleCaptions .carousel-item {
@@ -319,13 +328,13 @@ body{
 
 .social_icon li a {
     display: block;
-    width: 40px; /* Ancho del icono */
+    width: 45px; /* Ancho del icono */
     height: 40px; /* Alto del icono */
     line-height: 40px; /* Alinear el texto verticalmente */
     text-align: center;
     border-radius: 50%; /* Para hacer los iconos circulares */
     color: #fff; /* Color del icono */
-    font-size: 20px; /* Tamaño del icono */
+    font-size: 25px; /* Tamaño del icono */
     transition: background-color 0.3s ease; /* Efecto de transición al pasar el mouse */
     transform: scale(1.1); /* Aumenta en un 10% al pasar el mouse */
 }
@@ -445,21 +454,10 @@ body{
     text-decoration: none;
 }
 
-#btnFooter{
-    margin: 0 auto;
-    background-color: #5d2417;
-    width: 200px;
-    padding: 0.5em;
-    border: 1px solid whitesmoke;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px #000800;
-    color: white;
-    text-decoration: none;
-}
 
 /* Estilos para el footer */
 
-.container-fluid {
+#footer-container{
     width: 100%; /* Cambia el ancho a 100% para que se expanda desde la esquina izquierda a la derecha */
     background-color: #8a4004;
     background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
@@ -473,12 +471,14 @@ body{
 
 #footer-container .titleFooter {
     font-family: "Great Vibes", cursive;
-    font-weight: 400;
+    font-weight: 250px;
     font-style: normal;
     color: white;
     text-align: center;
-    font-size: 70px;
-    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    margin-left: 80px;
 }
 
 
@@ -486,9 +486,10 @@ body{
     display: flex;
     justify-content: space-around; /* Alinea los bloques horizontalmente */
     position: relative;
-    background-color: #5d2417;;
+    background-color: #bd6f2f;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
     border: 1px solid whitesmoke;
-    box-shadow: 5px 5px 5px #000800;
+    box-shadow: 3px 3px 3px #000800;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
@@ -547,6 +548,19 @@ body{
 
 }
 
+#btnFooter{
+    margin: 0 auto;
+    background-color: #bd6f2f;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+    width: 200px;
+    padding: 0.5em;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #000800;
+    color: white;
+    text-decoration: none;
+}
+
 /* Containers antes del footer del Inicio*/
 
 #IconBlock1,#IconBlock2,#IconBlock3,#IconBlock4{
@@ -559,13 +573,13 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0px;
-    justify-content: space-between; /* Esto separa los bloques de iconos */
     width: 360px;
+    padding-bottom: 25px;
     margin-left: 19.5px;
     border: 1px solid whitesmoke;
-    border-radius: 5px;
+    border-radius: 60%;
     box-shadow: 3px 3px 3px #000800;
+    
     
 }
 
@@ -578,6 +592,7 @@ body{
     display: flex;
     justify-content: center; /* Centrar horizontalmente */
     text-align: center;
+    padding: 10px;
 }
 
 .icon-content {
@@ -588,4 +603,13 @@ body{
     text-align: center; /* Asegura que el texto esté centrado */
     padding:  10px; /* Añade un poco de espacio alrededor del contenido */
     width:  100%; /* Asegura que el contenido ocupe todo el ancho disponible */
+}
+
+/*checkout*/ 
+.checkout p{
+    font-size: 300px;
+}
+
+.checkout h1{
+    font-size: 300px;
 }
