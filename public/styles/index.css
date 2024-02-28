@@ -209,7 +209,15 @@ box-shadow: 2px 2px 2px #000800;
   
 }
 
-.btn-success{
+/* Formulario de pago */
+
+.col-md-7{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.col-md-7 button{
     margin: 0 auto;
     background-color: #5d2417;
     width: 200px;
@@ -219,4 +227,41 @@ box-shadow: 2px 2px 2px #000800;
     box-shadow: 5px 5px 5px #000800;
     color: white;
     text-decoration: none;
+}
+
+/*CheckoutForm*/
+
+.container{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+}
+
+.text-center h1{
+  font-size: 400%;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+}
+
+#cart-checkout .text-primary{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: white;
+}
+
+#cart-counter-checkout .badge{
+  background-color: rgba(121, 119, 119, 0.5); /* Blanco con 50% de opacidad */
+  color: white;
+}
+
+.input-group button{
+  background-color: #5d2417;
+} /* Boton de validar descuento */
+
+.text-body-secondary{
+  color: black;
 }
