@@ -57,7 +57,7 @@ export const CheckoutForm = () => {
     <form className="card card-body" onSubmit={handleSubmit}>
       {/* Product Information */}
       {cart.map((item, index) => (
-        <div key={index} className="cart-box">
+        <div key={index}>
           <img
             src={item.imgUrl}
             alt={item.name}
