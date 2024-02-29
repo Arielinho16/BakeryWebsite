@@ -3,7 +3,7 @@ import storeItems from "../data/products.json";
 import { Item } from "./Item";
 
 export const ItemList = ({ category }) => {
-  // Filtrar los productos basándose en la categoría
+  // Filtrar los productos basándose en la categoría para mostrarselos al cliente
   const filteredItems = storeItems.filter(product => product.category === category);
 
   return (

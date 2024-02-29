@@ -13,12 +13,15 @@ export const CheckoutForm = () => {
   const [promotionalCode,setPromotionalCode] = useState('');
   const [usedPromotionalCode,setUsedPromotionalCode] = useState([]);
   const [errorCodeProm,setErrorCodeProm] = useState('');
-  
+
+  const calcTotalPrice = cart.reduce((acc, curr) => acc + curr.quantity * curr.price,0);  //Seteamos el Precio Total de el carrito
+  const [totalPrice,setTotalPrice] = useState(calcTotalPrice);
+
   const quantity = cart.reduce((acc, curr) => acc + curr.quantity, 0); //Cantidad de items del carrito
 
-  const totalPrice = cart.reduce((acc, curr) => acc + curr.quantity * curr.price,0);  //Seteamos el Precio Total de el carrito
 
-  const totalPriceinBRLcents = (Math.round(((totalPrice / 1.480).toFixed(2))*100)); //pasamos a centavos de real para el Stripe mediante un set tambien
+  const calcTotalPriceinBRLcents = (Math.round(((totalPrice / 1.480).toFixed(2))*100)); //pasamos a centavos de real para el Stripe mediante un set tambien
+  const [totalPriceinBRLcents,setTotalPriceinBRLcents] = useState(calcTotalPriceinBRLcents);
 
   const codigosPromocionalesRobinas = ['APSA1210','VACC2810','CRVM1302','LAMC1234'];
 
@@ -33,6 +36,10 @@ export const CheckoutForm = () => {
       if(codigosPromocionalesRobinas.includes(codeProm)){  // si el usuario nos ingresa un codigo promocional valido de la lista de codigos
         
         console.log("Codigo Valido");
+        const descuento = totalPrice * 0.05;
+        const newPrice = totalPrice - descuento;   // va a pagar con 5% de descuento sobre su total
+        setTotalPrice(newPrice);
+        setTotalPriceinBRLcents(Math.round(((newPrice / 1.480).toFixed(2))*100));
         setUsedPromotionalCode(...usedPromotionalCode,codeProm); //actualizamos la lista de codigos usados con el nuevo codigo ya usado
 
       }else{
@@ -106,8 +113,8 @@ export const CheckoutForm = () => {
         <div className="row g-5">
           <div className="col-md-5 col-lg-4 order-md-last">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span id="cart-checkout" className="text-primary">Tu carrito</span>
-              <span id="cart-counter-checkout" className="badge bg-primary rounded-pill">{quantity}</span>
+              <span id="cart-checkout" className="text-primary" color="black">Tu carrito</span>
+              <span id="cart-counter-checkout" className="badge bg-primary rounded-pill" color="white" background-color ="rgba(121, 119, 119, 0.5)">{quantity}</span>
             </h4>
             <ul className="list-group mb-3">
               {cart.map((item, index) => (
@@ -148,7 +155,7 @@ export const CheckoutForm = () => {
 
           </div>
           <div className="col-md-7 col-lg-8">
-            <h4 className="mb-3">Dirección de Envio</h4>
+            <h3 className="mb-3">Dirección de Envio</h3>
             <form className="needs-validation" noValidate>
               <div className="row g-3">
                 <div className="col-sm-6">

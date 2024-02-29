@@ -229,6 +229,17 @@ box-shadow: 2px 2px 2px #000800;
     text-decoration: none;
 }
 
+.form-check-label, .form-group{
+  color: #000800;
+}
+
+.col-md-7 h4{
+  color: #000800;
+}
+
+
+
+
 /*CheckoutForm*/
 
 .container{
@@ -264,4 +275,5 @@ box-shadow: 2px 2px 2px #000800;
 
 .text-body-secondary{
   color: black;
+ 
 }
