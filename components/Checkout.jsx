@@ -10,41 +10,42 @@ export const CheckoutForm = () => {
   const [cart, setCart] = useContext(CartContext);
   const [selectedState,setState] = useState('');
   const [cities,setCities] = useState([]);
-  const [promotionalCode,setpromotionalCode] = useState('');
+  const [promotionalCode,setPromotionalCode] = useState('');
+  const [usedPromotionalCode,setUsedPromotionalCode] = useState([]);
+  const [errorCodeProm,setErrorCodeProm] = useState('');
   
-
   const quantity = cart.reduce((acc, curr) => acc + curr.quantity, 0); //Cantidad de items del carrito
-  const totalPrice = cart.reduce(
-    //Precio Total de el carrito
-    (acc, curr) => acc + curr.quantity * curr.price,
-    0
-  );
 
-  const totalPriceinBRLcents = Math.round(((totalPrice / 1.480).toFixed(2))*100); //pasamos a centavos de real para el Stripe
+  const totalPrice = cart.reduce((acc, curr) => acc + curr.quantity * curr.price,0);  //Seteamos el Precio Total de el carrito
 
-  const codigosPromocionalesRobinas = ['APSA1210','VACC2810','CRVM1302'];
+  const totalPriceinBRLcents = (Math.round(((totalPrice / 1.480).toFixed(2))*100)); //pasamos a centavos de real para el Stripe mediante un set tambien
 
-  const descuento = totalPrice - (totalPrice * 0.05); //para obtener un descuento del 5% para los que ingresen el codigo promocional
-
-  const descuentoinBRL = totalPriceinBRLcents -  (totalPriceinBRLcents * 0.05);//pasamos a centavos el descuento para el Stripe
+  const codigosPromocionalesRobinas = ['APSA1210','VACC2810','CRVM1302','LAMC1234'];
 
 
   const handlePromotionalCode = (e) => {
 
     e.preventDefault();
-    const codeProm = e.target.value;
-    setpromotionalCode(codeProm);
+    const codeProm = promotionalCode;
 
-    if(codigosPromocionalesRobinas.includes(codeProm)){
-      
-      totalPrice = totalPrice - descuento;
-      totalPriceinBRLcents = totalPriceinBRLcents - descuentoinBRL;
+    if(!usedPromotionalCode.includes(codeProm)){
 
-    }else{
-      console.log('Código promocional inválido');
-    }
+      if(codigosPromocionalesRobinas.includes(codeProm)){  // si el usuario nos ingresa un codigo promocional valido de la lista de codigos
+        
+        console.log("Codigo Valido");
+        setUsedPromotionalCode(...usedPromotionalCode,codeProm); //actualizamos la lista de codigos usados con el nuevo codigo ya usado
 
-  }
+      }else{
+        console.log("Código promocional inválido");
+        setErrorCodeProm('Código promocional inválido');
+      }
+    } else {
+      console.log('Código promocional ya utilizado');
+      setErrorCodeProm('Código promocional ya utilizado');
+
+    } 
+
+  };
   
   const handleStateChange = (e) => {
 
@@ -121,7 +122,7 @@ export const CheckoutForm = () => {
               <li className="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div className="text-success">
                   <h6 className="my-0">Código Promocional</h6>
-                  <small>Ejemplo:1234WX</small>
+                  <small>Ejemplo:ZXCV1234</small>
                 </div>
                 <span className="text-success">−5%</span>
               </li>
@@ -133,11 +134,17 @@ export const CheckoutForm = () => {
             </ul>
 
             <form className="card p-2" onSubmit={handlePromotionalCode}>
-              <div className="input-group">
-                <input type="text" className="form-control" placeholder="Código Promocional" value={promotionalCode} onChange={handlePromotionalCode}/>
-                <button type="submit" className="btn btn-secondary" >Validar</button>
-              </div>
-            </form>
+                <div className="input-group">
+                  <input type="text" className="form-control" placeholder="Código Promocional" value={promotionalCode} onChange={(e) => setPromotionalCode(e.target.value)}/>
+                  <button type="submit" className="btn btn-secondary" >Validar</button>
+                </div>
+                {errorCodeProm && 
+                  (<div className="invalid-feedback" style={{ marginTop: "0.5rem" }}>
+                    {errorCodeProm}
+                  </div>
+                )}
+              </form>
+
 
           </div>
           <div className="col-md-7 col-lg-8">
@@ -146,7 +153,7 @@ export const CheckoutForm = () => {
               <div className="row g-3">
                 <div className="col-sm-6">
                   <label htmlFor="firstName" className="form-label">Nombre</label>
-                  <input type="text" className="form-control" id="firstName" placeholder="" value="" required />
+                  <input type="text" className="form-control" id="firstName" placeholder="Ej: Juan Andres" value="" required />
                   <div className="invalid-feedback">
                     Se requiere un nombre válido.
                   </div>
@@ -154,7 +161,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-sm-6">
                   <label htmlFor="lastName" className="form-label">Apellido</label>
-                  <input type="text" className="form-control" id="lastName" placeholder="" value="" required />
+                  <input type="text" className="form-control" id="lastName" placeholder="Ej: Perez Gonzalez" value="" required />
                   <div className="invalid-feedback">
                     Se requiere un apellido válido.
                   </div>
@@ -164,7 +171,7 @@ export const CheckoutForm = () => {
                   <label htmlFor="username" className="form-label">Usuario</label>
                   <div className="input-group has-validation">
                     <span className="input-group-text">@</span>
-                    <input type="text" className="form-control" id="username" placeholder="Username" required />
+                    <input type="text" className="form-control" id="username" placeholder="Usuario" required />
                     <div className="invalid-feedback">
                       Nombre de usuario requerido.
                     </div>
@@ -173,7 +180,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-12">
                   <label htmlFor="email" className="form-label">Email <span className="text-body-secondary"></span></label>
-                  <input type="email" className="form-control" id="email" placeholder="you@example.com" />
+                  <input type="email" className="form-control" id="email" placeholder="Ej: robinasbakery@gmail.com" />
                   <div className="invalid-feedback">
                   Ingrese una dirección de correo electrónico válida para recibir actualizaciones de envío.
                   </div>
@@ -181,7 +188,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-12">
                   <label htmlFor="email" className="form-label">Teléfono <span className="text-body-secondary"></span></label>
-                  <input type="email" className="form-control" id="email" placeholder="0981 333222" />
+                  <input type="email" className="form-control" id="email" placeholder="Ej: 0981 333222" />
                   <div className="invalid-feedback">
                   Ingrese nro. de teléfono válido para recibir actualizaciones de envío.
                   </div>
@@ -189,7 +196,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-12">
                   <label htmlFor="address" className="form-label">Dirección</label>
-                  <input type="text" className="form-control" id="address" placeholder="1234 Calle Palma" required />
+                  <input type="text" className="form-control" id="address" placeholder="Ej: 1234 Calle Palma" required />
                   <div className="invalid-feedback">
                     Por favor, ingrese su dirección.
                   </div>
@@ -197,7 +204,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-12">
                   <label htmlFor="address2" className="form-label">Indicaciones <span className="text-body-secondary">(Optional)</span></label>
-                  <input type="text" className="form-control" id="address2" placeholder="Casa o Apartamento Nro. 1234" />
+                  <input type="text" className="form-control" id="address2" placeholder="Ej: Casa o Apartamento Nro. 1234" />
                 </div>
 
                 <div className="col-md-5">
