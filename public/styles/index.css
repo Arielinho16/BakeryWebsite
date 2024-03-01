@@ -277,3 +277,21 @@ box-shadow: 2px 2px 2px #000800;
   color: black;
  
 }
+
+.card.card-body {
+  width: 350px; /* Ancho de la tarjeta */
+  height: 200px; /* Alto de la tarjeta */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  border: 1px solid #ccc; /* Borde sólido */
+  padding: 20px; /* Espacio interno */
+  background-image: url('/public/images/tarjetaFondo.png'); /* Ruta de la imagen de fondo */
+  background-size: 370px; /* Cubrir todo el área del elemento */
+  background-position: center; /* Centrar la imagen */
+}
+
+/* Ajustes para los elementos dentro del formulario */
+.form-check, .form-group {
+  margin-bottom: 10px; /* Espacio entre elementos */
+}
+
