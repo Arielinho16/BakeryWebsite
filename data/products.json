@@ -1,38 +1,286 @@
 [
   {
     "id":  1,
-    "name": "Capuccino Tradicional",
+    "name": "Capuccino",
     "price":  16500,
-    "imgUrl": "./images/capuccino.png",
+    "imgUrl": "./images/cafes/capuccino.png",
     "category": "cafe"
   },
   {
     "id":  2,
-    "name": "Canasta Tradicional",
-    "price":  80000,
-    "imgUrl": "./images/canasta.png",
-    "category": "canasta"
+    "name": "Mocca",
+    "price":  18000,
+    "imgUrl": "./images/cafes/mochaccino.jpg",
+    "category": "cafe"
   },
   {
     "id":  3,
-    "name": "Pastel de Zanahoria",
-    "price":  15000,
-    "imgUrl": "./images/pastel_de_zanahoria.png",
-    "category": "pasteles"
+    "name": "Cafe con Leche",
+    "price":  9500,
+    "imgUrl": "./images/cafes/cafe_con_leche.jpg",
+    "category": "cafe"
   },
   {
     "id":  4,
-    "name": "Alfajor",
-    "price":  5500,
-    "imgUrl": "./images/alfajores.png",
-    "category": "dulces"
+    "name": "Chocolate Caliente",
+    "price":  13500,
+    "imgUrl": "./images/cafes/toddy.jpg",
+    "category": "cafe"
   },
   {
     "id":  5,
     "name": "Espresso",
     "price":  3000,
-    "imgUrl": "./images/expresso.png",
+    "imgUrl": "./images/cafes/expresso.png",
     "category": "cafe"
+  },
+
+  {
+    "id":  6,
+    "name": "Cafe Irlandes",
+    "price":  16500,
+    "imgUrl": "./images/cafes/cafe_irlandes.jpg",
+    "category": "cafe"
+  },
+  {
+    "id":  7,
+    "name": "Iced Tea",
+    "price":  12000,
+    "imgUrl": "./images/cafes/iced_tea.png",
+    "category": "cafe"
+  },
+  {
+    "id":  8,
+    "name": "Chococcino",
+    "price":  18000,
+    "imgUrl": "./images/cafes/chococcino.png",
+    "category": "cafe"
+  },
+  {
+    "id":  9,
+    "name": "Canasta Tradicional",
+    "price":  80000,
+    "imgUrl": "./images/canastas/canasta.png",
+    "category": "canasta"
+  },
+  {
+    "id":  10,
+    "name": "Alfajor de Maicena",
+    "price":  4500,
+    "imgUrl": "./images/dulces/alfajores-maicena.png",
+    "category": "dulces"
+  },
+
+  {
+    "id":  11,
+    "name": "Alfajor",
+    "price":  5500,
+    "imgUrl": "./images/dulces/alfajores.png",
+    "category": "dulces"
+  },
+  {
+    "id":  12,
+    "name": "Croissant de chocolate blanco",
+    "price":  7500,
+    "imgUrl": "./images/dulces/blanco.png",
+    "category": "dulces"
+  },
+  {
+    "id":  13,
+    "name": "Croissant de chocolate negro",
+    "price":  6500,
+    "imgUrl": "./images/dulces/croissant_negro.png",
+    "category": "dulces"
+  },
+  {
+    "id":  14,
+    "name": "Medialuna con relleno",
+    "price":  5000,
+    "imgUrl": "./images/dulces/medialuna_rellena.jpg",
+    "category": "dulces"
+  },
+  {
+    "id":  15,
+    "name": "Medialuna sin relleno",
+    "price":  4000,
+    "imgUrl": "./images/dulces/medialuna.png",
+    "category": "dulces"
+  },
+
+  {
+    "id":  16,
+    "name": "Apple Pie",
+    "price":  14500,
+    "imgUrl": "./images/pasteleria/apple_pie.jpg",
+    "category": "pasteles"
+  },
+  {
+    "id":  17,
+    "name": "Cheesecake",
+    "price":  15500,
+    "imgUrl": "./images/pasteleria/cheesecake.png",
+    "category": "pasteles"
+  },
+  {
+    "id":  18,
+    "name": "Red Velvet",
+    "price":  15000,
+    "imgUrl": "./images/pasteleria/redvelvet.jpg",
+    "category": "pasteles"
+  },
+  {
+    "id":  19,
+    "name": "Pastel de Chocolate",
+    "price":  16500,
+    "imgUrl": "./images/pasteleria/torta_chocolate.jpg",
+    "category": "pasteles"
+  },
+  {
+    "id":  20,
+    "name": "Pie de Limon",
+    "price":  13500,
+    "imgUrl": "./images/pasteleria/pie_limon.jpg",
+    "category": "pasteles"
+  },
+  {
+    "id":  21,
+    "name": "Pastel de Zanahoria",
+    "price":  15000,
+    "imgUrl": "./images/pasteleria/pastel_de_zanahoria.png",
+    "category": "pasteles"
+  },
+  {
+    "id":  22,
+    "name": "Brownie",
+    "price":  9500,
+    "imgUrl": "./images/pasteleria/brownie.jpg",
+    "category": "pasteles"
+  },
+  {
+    "id":  23,
+    "name": "Naked Cake",
+    "price":  17500,
+    "imgUrl": "./images/pasteleria/naked_cake.png",
+    "category": "pasteles"
+  },
+  {
+    "id":  24,
+    "name": "Tres Leches",
+    "price":  17500,
+    "imgUrl": "./images/pasteleria/tres_leches.png",
+    "category": "pasteles"
+  },
+  {
+    "id":  25,
+    "name": "Jugo de Naranja",
+    "price":  6000,
+    "imgUrl": "./images/jugos/jugo_naranja.jpg",
+    "category": "jugos"
+  },
+  {
+    "id":  26,
+    "name": "Jugo de Frutilla",
+    "price":  7000,
+    "imgUrl": "./images/jugos/jugo_frutilla.jpg",
+    "category": "jugos"
+  },
+  {
+    "id":  27,
+    "name": "Jugo de Durazno",
+    "price":  7000,
+    "imgUrl": "./images/jugos/jugo_durazno.png",
+    "category": "jugos"
+  },
+  {
+    "id":  28,
+    "name": "Limonada",
+    "price":  5500,
+    "imgUrl": "./images/jugos/limonada.png",
+    "category": "jugos"
+  },
+  {
+    "id":  29,
+    "name": "Coixinha",
+    "price":  6000,
+    "imgUrl": "./images/salados/Coxinhas.jpg",
+    "category": "salados"
+  },
+  {
+    "id":  30,
+    "name": "Croqueta",
+    "price":  4500,
+    "imgUrl": "./images/salados/croqueta.jpg",
+    "category": "salados"
+  },
+  {
+    "id":  31,
+    "name": "Empanada Carne",
+    "price":  4000,
+    "imgUrl": "./images/salados/empa_carne.jpg",
+    "category": "salados"
+  },
+  {
+    "id":  32,
+    "name": "Empanada Pollo",
+    "price":  4000,
+    "imgUrl": "./images/jugos/empa_pollo.png",
+    "category": "salados"
+  },
+  {
+    "id":  33,
+    "name": "Empanada JyQ",
+    "price":  4000,
+    "imgUrl": "./images/salados/jyq_empa.jpg",
+    "category": "salados"
+  },
+  {
+    "id":  34,
+    "name": "Bowl Avena y Frutas",
+    "price":  12500,
+    "imgUrl": "./images/saludables/bowl.jpg",
+    "category": "saludables"
+  },
+  {
+    "id":  35,
+    "name": "Ensalada Ceasar",
+    "price":  16000,
+    "imgUrl": "./images/saludables/ensalada_cesar.jpg",
+    "category": "saludables"
+  },
+  {
+    "id":  36,
+    "name": "Ensalada de frutas con yogurth griego",
+    "price":  9500,
+    "imgUrl": "./images/saludables/yogurt.jpg",
+    "category": "saludables"
+  },
+  {
+    "id":  37,
+    "name": "Batido Whey Frutilla",
+    "price":  12500,
+    "imgUrl": "./images/saludables/whey_frutilla.png",
+    "category": "saludables"
+  },
+  {
+    "id":  38,
+    "name": "Ensalada de Frutas",
+    "price":  7500,
+    "imgUrl": "./images/saludables/ensalada_frutas.jpg",
+    "category": "saludables"
+  },
+  {
+    "id":  39,
+    "name": "Pollo Grille con Ensalada",
+    "price":  19000,
+    "imgUrl": "./images/saludables/almuerzo.png",
+    "category": "saludables"
+  },
+  {
+    "id":  40,
+    "name": "Capuccino con Alfajor de Maicena",
+    "price":  18000,
+    "imgUrl": "./images/combos/combo1.png",
+    "category": "combos"
   }
 
 ]

@@ -292,6 +292,10 @@ box-shadow: 2px 2px 2px #000800;
 
 /* Ajustes para los elementos dentro del formulario */
 .form-check, .form-group {
-  margin-bottom: 10px; /* Espacio entre elementos */
+  margin-bottom: 15px; /* Espacio entre elementos */
 }
 
+.form-group{
+  color: #000800;
+  height: 150px;
+}
