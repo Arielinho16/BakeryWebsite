@@ -1,18 +1,20 @@
 import React, { useState, useContext } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { CartContext } from "../contexts/ShoppingCartContext";
+import { Link } from "react-router-dom";
 import axios from "axios";
-
 
 export const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [cart, setCart] = useContext(CartContext);
+  const [cart] = useContext(CartContext);
   const [selectedState,setState] = useState('');
   const [cities,setCities] = useState([]);
   const [promotionalCode,setPromotionalCode] = useState('');
   const [usedPromotionalCode,setUsedPromotionalCode] = useState([]);
   const [errorCodeProm,setErrorCodeProm] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
 
   const calcTotalPrice = cart.reduce((acc, curr) => acc + curr.quantity * curr.price,0);  //Seteamos el Precio Total de el carrito
   const [totalPrice,setTotalPrice] = useState(calcTotalPrice);
@@ -80,8 +82,8 @@ export const CheckoutForm = () => {
     });
     setLoading(true);
 
-    if (!error) {
-      const { id } = paymentMethod;
+    if (!error) { 
+      const { id } = paymentMethod;     // Código para el pago exitoso
       try {
         const { data } = await axios.post(
           "http://localhost:3000/api/checkout",
@@ -92,7 +94,12 @@ export const CheckoutForm = () => {
         );
         console.log(data);
 
-        elements.getElement(CardElement).clear();
+        elements.getElement(CardElement).clear(); // Reestablece el espacio de la tarjeta cuando se confirma el pago
+
+        // Mostrar el modal de pago exitoso aquí
+        setShowModal(true);
+        console.log("showmodal:",{showModal});
+
       } catch (error) {
         console.log(error);
       }
@@ -102,6 +109,7 @@ export const CheckoutForm = () => {
 
   console.log(!stripe || loading);
 
+ 
   return (
    
     <div className="container">
@@ -308,7 +316,6 @@ export const CheckoutForm = () => {
             <button disabled={!stripe} className="btn btn-success">
               {loading ? (
                 <div className="spinner-border text-light" role="status">
-                  <span className="sr-only">Cargando...</span>
                 </div>
               ) : (
                 "Pagar"
@@ -316,6 +323,33 @@ export const CheckoutForm = () => {
             </button>
           </form>
         </div>
+        
+        {/*Show Modal de pago exitoso*/ }
+        {showModal && (
+          <div>   {/* Nuevo pedazo*/}
+            {/* Fondo oscurecido */}
+            <div className="backdrop"></div> {/* Se abre y se cierra el div aca para que solo el fondo tenga ese background, si se envuelve todo el modal, el modal tambien va a agarrar el backgroud y no solo el fondo detras */}
+            {/* Modal */}
+            <div className="modal" tabIndex="-1" style={{ display: "block" }}>
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title">¡Pago Exitoso!</h5>
+                    <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+                  </div>
+                  <div className="modal-body">
+                    <p>Tu pago se ha procesado con éxito.</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cerrar</button>
+                    <Link to="/menu" type="button" className="btn btn-primary" >Volver al Inicio</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )};
+
       </main>
     </div>
 

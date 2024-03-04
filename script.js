@@ -62,7 +62,7 @@ app.post("/api/checkout", async (req, res) => {
 
     console.log(payment);
 
-    return res.status(302).header("Location", "http://localhost:3001").end();
+    return res.status(302).header("Location", "http://localhost:3000").end();
   } catch (error) {
     console.log(error);
     return res.json({ message: error.raw.message });

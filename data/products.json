@@ -223,7 +223,7 @@
     "id":  32,
     "name": "Empanada Pollo",
     "price":  4000,
-    "imgUrl": "./images/jugos/empa_pollo.png",
+    "imgUrl": "./images/salados/empa_pollo.png",
     "category": "salados"
   },
   {

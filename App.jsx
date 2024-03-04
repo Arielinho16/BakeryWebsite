@@ -8,6 +8,7 @@ import { Layout } from "./components/Layout";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { CheckoutForm } from "./components/Checkout";
+import { ItemListforMenu } from "./components/ItemListforMenu";
 
 // Agrega aquí tu clave pública de Stripe
 const stripePromise = loadStripe("pk_test_51OmmqBK4P6Uiq4axZvTPwvHJhu5JIHJB9zufHtZ2WmuWRwJqUH8iHOf9hNFug4XYA4kOvcD2Jqjp3nMzEMOMUv88000vxGvHGn");
@@ -19,8 +20,8 @@ export const App = () => {
         <NavBarControlled />
         <Routes>
           <Route path="/" element={<ItemList category="inicio" />} />
-          <Route path="/menu" element={<ItemList category="menu" />} />
-          <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /></Layout>} />
+          <Route path="/menu" element={<Layout title="Menú"><ItemListforMenu category="menu" /> </Layout>} />
+          <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /> </Layout>} />
           <Route path="/cafe" element={<Layout title="Cafés"><ItemList category="cafe" /></Layout>} />
           <Route path="/canasta" element={<Layout title="Canastas"><ItemList category="canasta" /></Layout>} />
           <Route path="/combos" element={<Layout title="Combos"><ItemList category="combos" /></Layout>} />
