@@ -42,11 +42,11 @@ export const ShoppingCart = () => {
         
         <div className="cart-text">Cantidad de Productos: {quantity}</div>
         <div className="cart-text">Total: {totalPrice}₲</div>
-          <Link to="/menu" className="btn btn-success">
+          <Link to="/menu" className="btn btn-success" id="buttonCarrito1">
             Volver
           </Link>
           {/* Reemplaza el botón con un componente Link que apunte a la ruta /checkout */}
-          <Link to="/checkout" className="btn btn-success" onClick={handleProceedToCheckout}>
+          <Link to="/checkout" className="btn btn-success" onClick={handleProceedToCheckout} id="buttonCarrito2">
             Proceder al Pago
           </Link>
       </div>

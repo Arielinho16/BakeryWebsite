@@ -50,8 +50,8 @@ export const Item = ({ name, price, id, imgUrl }) => {
       )}
 
       <div className="name-box">{name}</div>
-      <img src={imgUrl} width="120" height="100" />
-      <div className="item-price">${price}</div>
+      <img src={imgUrl} width="150" height="120" />
+      <div className="item-price">{price}Gs.</div>
 
       {quantityPerItem === 0 ? (
         <button className="item-add-button" onClick={() => addToCart()}>

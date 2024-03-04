@@ -1,7 +1,7 @@
 import React from "react";
 import { ItemList } from "./components/ItemList";
 import { NavBar } from "./components/NavBar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { ShoppingCart } from "./components/ShoppingCart";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import { Layout } from "./components/Layout";
@@ -16,18 +16,18 @@ export const App = () => {
   return (
     <ShoppingCartProvider>
       <Router>
-        <NavBar />
+        <NavBarControlled />
         <Routes>
           <Route path="/" element={<ItemList category="inicio" />} />
           <Route path="/menu" element={<ItemList category="menu" />} />
-          <Route path="/dulces" element={<Layout title="Cafés"><ItemList category="dulces" /></Layout>} />
+          <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /></Layout>} />
           <Route path="/cafe" element={<Layout title="Cafés"><ItemList category="cafe" /></Layout>} />
-          <Route path="/canasta" element={<Layout title="Cafés"><ItemList category="canasta" /></Layout>} />
-          <Route path="/combos" element={<ItemList category="combos" />} />
-          <Route path="/jugos" element={<ItemList category="jugos" />} />
-          <Route path="/salados" element={<ItemList category="salados" />} />
-          <Route path="/pasteles" element={<Layout title="Cafés"><ItemList category="pasteles" /></Layout>} />
-          <Route path="/saludables" element={<ItemList category="saludables" />} />
+          <Route path="/canasta" element={<Layout title="Canastas"><ItemList category="canasta" /></Layout>} />
+          <Route path="/combos" element={<Layout title="Combos"><ItemList category="combos" /></Layout>} />
+          <Route path="/jugos" element={<Layout title="Jugos Naturales"><ItemList category="jugos" /></Layout>} />
+          <Route path="/salados" element={<Layout title="Salados"><ItemList category="salados" /></Layout>} />
+          <Route path="/pasteles" element={<Layout title="Pasteleria"><ItemList category="pasteles" /></Layout>} />
+          <Route path="/saludables" element={<Layout title="Platos saludables"><ItemList category="saludables" /></Layout>} />
           <Route path="/cart" element={<ShoppingCart />} />
           {/* Utiliza Elements de Stripe para envolver el componente CheckoutForm */}
           <Route path="/checkout" element={
@@ -39,4 +39,16 @@ export const App = () => {
       </Router>
     </ShoppingCartProvider>
   );
+};
+
+// Componente para controlar la visualización del NavBar
+const NavBarControlled = () => {
+  const location = useLocation();
+
+  // Ocultar el NavBar en la ruta de checkout
+  if (location.pathname === '/checkout') {
+    return null;
+  }
+
+  return <NavBar />;
 };

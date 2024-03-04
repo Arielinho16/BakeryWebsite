@@ -31,7 +31,7 @@ const config = {
 //db.connect();
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 // Configuración de Express
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,7 +57,7 @@ app.post("/api/checkout", async (req, res) => {
       description: "Bakery Product",
       payment_method: id,
       confirm: true, //confirm the payment at the same time
-      return_url: "http://localhost:3001", // Aquí debes proporcionar la URL a la que deseas redirigir al cliente
+      return_url: "http://localhost:3000", // Aquí debes proporcionar la URL a la que deseas redirigir al cliente
     });
 
     console.log(payment);

@@ -84,7 +84,7 @@ export const CheckoutForm = () => {
       const { id } = paymentMethod;
       try {
         const { data } = await axios.post(
-          "http://localhost:3001/api/checkout",
+          "http://localhost:3000/api/checkout",
           {
             id,
             amount: totalPriceinBRLcents, // Envía el precio total en lugar del objeto { totalPrice }
