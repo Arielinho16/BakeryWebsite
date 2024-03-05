@@ -13,37 +13,40 @@ export const ItemListforMenu = () => {
       <div className="row">
         <div className="col-md-3 sidebar">
           {/* Sidebar */}
-          <div className="flex-shrink-0 p-3" style={{ width: "200px" }}>
+          <div className="flex-shrink-0 p-3" style={{ width: "120px" }}>
             <ul className="list-unstyled ps-0">
-              <li className="mb-1">
-                <button id="sidebarTitle" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-                  Categorias
-                  <CiCoffeeCup style={{ marginLeft: "5px",fontSize: "32px" }}/>
-                </button>
-                <div className="collapse" id="home-collapse">
-                  <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="/cafe" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Cafés</a></li>
-                    <li><a href="/canasta" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Canastas</a></li>
-                    <li><a href="/combos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Combos</a></li>
-                    <li><a href="/dulces" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Dulces</a></li>
-                    <li><a href="/jugos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText" >Jugos</a></li>
-                    <li><a href="/salados" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Salados</a></li>
-                    <li><a href="/saludables" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Saludables</a></li>
-                    <li><a href="/pasteles" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Pastelería</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li className="mb-1">
-              <Link to = "/cart" id="sidebarTitle" type="button" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                  Pedidos
-                  <TiShoppingCart style={{marginLeft: "5px", fontSize: "28px" }}/>
-              </Link>
-              </li>
-              <li className="border-top my-3" style={{ display: "block" }}></li>
+              <div className="border-bottom">
+                  <li className="mb-1">
+                    <button id="sidebarTitle" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                      Categorias
+                      <CiCoffeeCup style={{ marginLeft: "3px",fontSize: "32px" }}/>
+                    </button>
+                    <div className="collapse" id="home-collapse">
+                      <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="/cafe" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Cafés</a></li>
+                        <li><a href="/canasta" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Canastas</a></li>
+                        <li><a href="/combos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Combos</a></li>
+                        <li><a href="/dulces" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Dulces</a></li>
+                        <li><a href="/jugos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText" >Jugos</a></li>
+                        <li><a href="/salados" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Salados</a></li>
+                        <li><a href="/saludables" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Saludables</a></li>
+                        <li><a href="/pasteles" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Pastelería</a></li>
+                      </ul>
+                    </div>
+                  </li>
+              </div>
+              <div className="border-bottom">
+                <li className="mb-1">
+                <Link to={"/cart"} id="sidebarTitle" type="button" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    Pedidos
+                    <TiShoppingCart style={{marginLeft: "3px", fontSize: "28px" }}/>
+                </Link>
+                </li>
+              </div>
               <li className="mb-1">
                   <button id="sidebarTitle" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
                   Cuenta
-                      <FaRegUser style={{ marginLeft: "5px", fontSize: "28px" }}/>
+                  <FaRegUser style={{ marginLeft: "3px", fontSize: "28px" }}/>
                   </button>
                   <div className="collapse" id="dashboard-collapse" >
                       <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">

@@ -207,6 +207,7 @@ box-shadow: 2px 2px 2px #000800;
   color: white;
   text-align: center;
   align-items: center;
+  margin-bottom: 30px;
   
 }
 
@@ -346,7 +347,11 @@ box-shadow: 2px 2px 2px #000800;
   align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
   height: 600px;
   color: #000800;
-  margin-top: 50px;
+  margin-top: 250px;
+}
+
+.border-bottom {
+  width: 100%; /* Asegura que el borde inferior ocupe todo el ancho del sidebar */
 }
 
 
@@ -356,7 +361,8 @@ box-shadow: 2px 2px 2px #000800;
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 150%;
-  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .sidebarText{

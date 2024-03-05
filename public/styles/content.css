@@ -13,6 +13,7 @@ body,html{
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
+
 .container-categorias{
     width: 100%; /* Establece un ancho máximo para el contenedor */
     margin: auto; /* Centra el contenedor horizontalmente */
