@@ -338,6 +338,34 @@ box-shadow: 2px 2px 2px #000800;
   color: #000800;
 }
 
-.items-list{
-  background-color: #000800;
+.sidebar {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  align-items: flex-start; /* Alinea los elementos verticalmente en la parte superior */
+  height: 600px;
+  color: #000800;
+  margin-top: 50px;
 }
+
+
+#sidebarTitle{
+  color: #000800;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 150%;
+  width: 100%;
+}
+
+.sidebarText{
+  color: #000800;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 130%;
+  text-align:center;
+  justify-content: center;
+}
+
