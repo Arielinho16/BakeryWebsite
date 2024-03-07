@@ -17,13 +17,13 @@ export const ItemList = ({ category }) => {
 
     <div className="container-fluid">
     <div className="row">
-      <div className="col-md-3 sidebar" style={{alignItems: "flex-start"}}> {/*verificar 05/03 */ }
+      <div className="col-md-3 sidebar"> 
         {/* Sidebar */}
         <div className="flex-shrink-0 p-3" style={{ width: "120px" }}>
           <ul className="list-unstyled ps-0">
             <div className="border-bottom">
                 <li className="mb-1">
-{/*verificar 05/03 */ }<button id="sidebarTitle" style={{ display: "flex", alignItems: "center"}} className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                 <button id="sidebarTitle" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
                     Categorias
                     <CiCoffeeCup style={{ marginLeft: "3px",fontSize: "32px" }}/>  
                   </button>
@@ -43,9 +43,9 @@ export const ItemList = ({ category }) => {
             </div>
             <div className="border-bottom">
               <li className="mb-1">
-              <Link to={"/cart"} id="sidebarTitle" type="button" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">
+              <Link to={"/cart"} id="sidebarTitle" type="button" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText" style={{marginLeft:"9px", marginTop:"5px",marginBottom:"5px"}}>
                   Pedidos
-                  <TiShoppingCart style={{marginLeft: "3px", fontSize: "28px" }}/>
+                  <TiShoppingCart style={{marginLeft: "3px", fontSize: "32px" }}/>
               </Link>
               </li>
             </div>
@@ -55,7 +55,7 @@ export const ItemList = ({ category }) => {
                 <FaRegUser style={{ marginLeft: "3px", fontSize: "28px" }}/>
                 </button>
                 <div className="collapse" id="dashboard-collapse" >
-                    <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small text-start">
                       <li><a href="/user" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Registrarse</a></li>
                       <li><a href="/user" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Iniciar sesión</a></li>
                       <li><a href="/user" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Perfil</a></li>

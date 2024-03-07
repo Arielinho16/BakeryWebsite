@@ -1,11 +1,9 @@
 import React from "react";
 import storeItems from "../data/products.json";
 import { Item } from "./Item";
-import { Link } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
-import { TiShoppingCart } from "react-icons/ti";
 import { CiCoffeeCup } from "react-icons/ci";
-
+import { TiShoppingCart } from "react-icons/ti";
 
 export const ItemListforMenu = () => {
   return (
@@ -34,14 +32,6 @@ export const ItemListforMenu = () => {
                       </ul>
                     </div>
                   </li>
-              </div>
-              <div className="border-bottom">
-                <li className="mb-1">
-                <Link to={"/cart"} id="sidebarTitle" type="button" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                    Pedidos
-                    <TiShoppingCart style={{marginLeft: "3px", fontSize: "28px" }}/>
-                </Link>
-                </li>
               </div>
               <li className="mb-1">
                   <button id="sidebarTitle" className="btn btn-toggle d-inline-flex  rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">

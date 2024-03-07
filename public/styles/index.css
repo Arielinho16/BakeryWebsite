@@ -67,7 +67,7 @@
 
 .item-quantity {
   color: #fff;
-  background-color: #bd6f2f;
+  background-color: #69411f;
   display: inline-block;
   padding: 5px 10px;
   border-radius: 20px;
@@ -98,10 +98,12 @@
   width: 100%;
 }
 
-    
-  
+.item-add-button:hover{
+  background-color: #8a3421;
+}
+      
 .item-minus-button {
-    background-color: #d9534f;
+    background-color: #e7211a;
     border-radius: 5px;
     color: #fff;
     border: none;
@@ -113,6 +115,10 @@
     margin-left: 5px;
 
   }
+
+.item-minus-button:hover{
+  background-color: #eb5954;
+}
   
 .item-plus-button {
     background-color: #337ab7;
@@ -126,6 +132,10 @@
     border-radius: 5px;
     box-shadow: 2px 2px 2px #000800;
   }
+
+.item-plus-button:hover{
+  background-color: #3897eb;
+}
 
 .item-description {
     font-size: 14px;
@@ -226,6 +236,13 @@ box-shadow: 2px 2px 2px #000800;
   margin-bottom: 20px;
 }
 
+#buttonCarrito1:hover,#buttonCarrito2:hover{
+
+  background-color: #8b321e; /* Cambia el color de fondo al marrón más claro cuando pasas el ratón sobre el botón */
+  
+}
+
+
 /* Formulario de pago */
 
 .col-md-7{
@@ -234,7 +251,7 @@ box-shadow: 2px 2px 2px #000800;
   font-style: normal;
 }
 
-.col-md-7 button{
+.col-md-7 button {
     margin: 0 auto;
     background-color: #5d2417;
     width: 200px;
@@ -244,6 +261,11 @@ box-shadow: 2px 2px 2px #000800;
     box-shadow: 5px 5px 5px #000800;
     color: white;
     text-decoration: none;
+}
+
+.col-md-7 button:hover {
+  background-color: #8b321e; /* Cambia el color de fondo al marrón más claro cuando pasas el ratón sobre el botón */
+  border: 1px solid whitesmoke;
 }
 
 .form-check-label, .form-group{
@@ -290,6 +312,11 @@ box-shadow: 2px 2px 2px #000800;
   background-color: #5d2417;
 } /* Boton de validar descuento */
 
+.input-group button:hover{
+
+  background-color: #8b321e; /* Cambia el color de fondo al marrón más claro cuando pasas el ratón sobre el botón */
+}
+
 .text-body-secondary{
   color: black;
  
@@ -314,7 +341,9 @@ box-shadow: 2px 2px 2px #000800;
 
 .form-group{
   color: #000800;
-  height: 150px;
+  background-color: white;
+  border: 0.5px solid black; /* Borde sólido */
+  border-radius: 5px;
 }
 
 /* Modal de confirmacion de pago*/
@@ -337,6 +366,24 @@ box-shadow: 2px 2px 2px #000800;
 .modal-title, .modal-body{
 
   color: #000800;
+}
+
+.modal-footer button{
+  margin: 0 auto;
+  background-color: #5d2417;
+  width: 200px;
+  padding: 0.5em;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #000800;
+  color: white;
+  text-decoration: none;
+}
+
+.modal-footer button:hover{
+
+  background-color: #8b321e; /* Cambia el color de fondo al marrón más claro cuando pasas el ratón sobre el botón */
+  
 }
 
 .sidebar {
@@ -365,13 +412,20 @@ box-shadow: 2px 2px 2px #000800;
   align-items: center;
 }
 
+#sidebarTitle:hover{
+
+  transform: scale(1.05); /* Aumenta en un 10% al pasar el mouse */
+}
+
 .sidebarText{
   color: #000800;
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 130%;
-  text-align:center;
-  justify-content: center;
 }
 
+.sidebarText:hover{
+
+  transform: scale(1.05); /* Aumenta en un 10% al pasar el mouse */
+}

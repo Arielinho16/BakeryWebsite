@@ -128,7 +128,7 @@ export const CheckoutForm = () => {
               {cart.map((item, index) => (
                 <li className="list-group-item d-flex justify-content-between lh-sm" key={index}>
                   <div>
-                    <h6 className="my-0">{item.name}</h6>
+                    <h6 className="my-0">{item.name} : {item.quantity}</h6>
                   </div>
                   <span className="text-body-secondary">{item.price} ₲</span>
                 </li>
@@ -183,12 +183,11 @@ export const CheckoutForm = () => {
                 </div>
 
                 <div className="col-12">
-                  <label htmlFor="username" className="form-label">Usuario</label>
+                  <label htmlFor="username" className="form-label">R.U.C o C.I.</label>
                   <div className="input-group has-validation">
-                    <span className="input-group-text">@</span>
-                    <input type="text" className="form-control" id="username" placeholder="Usuario" required />
+                    <input type="text" className="form-control" id="username" placeholder="RUC: 5670236-2 o C.I. 5670236" required />
                     <div className="invalid-feedback">
-                      Nombre de usuario requerido.
+                      Identidad Requerida.
                     </div>
                   </div>
                 </div>
