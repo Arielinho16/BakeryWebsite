@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import React, { useState, useContext, useEffect } from "react";
+import { CardElement, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import { CartContext } from "../contexts/ShoppingCartContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -14,7 +14,26 @@ export const CheckoutForm = () => {
   const [usedPromotionalCode,setUsedPromotionalCode] = useState([]);
   const [errorCodeProm,setErrorCodeProm] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showModalForm, setShowModalForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+ 
 
+ 
+
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px", // Ajusta el tamaño de la fuente según sea necesario
+        fontFamily: '"Open Sans", sans-serif', // Cambia la fuente según sea necesario
+        padding: "20px", // Ajusta el relleno según sea necesario
+        color: "#000800", // Cambia el color del texto según sea necesario
+        backgroundColor: "#ffffff", // Establece el color de fondo del elemento de tarjeta a blanco
+        "::placeholder": {
+        color: "#6c757d"
+        }
+      }
+    }
+  };
 
   const calcTotalPrice = cart.reduce((acc, curr) => acc + curr.quantity * curr.price,0);  //Seteamos el Precio Total de el carrito
   const [totalPrice,setTotalPrice] = useState(calcTotalPrice);
@@ -71,40 +90,68 @@ export const CheckoutForm = () => {
     }
   };
 
-  const [loading, setLoading] = useState(false);
-
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement)
-    });
-    setLoading(true);
+    // Validar campos específicos
+   
+    const nombre = document.getElementById('firstName').value;
+    const apellido = document.getElementById('lastName').value;
+    const direccion = document.getElementById('address').value;
+    const email = document.getElementById('email').value;
+    const telefono = document.getElementById('phone').value;
+    const id = document.getElementById('ID').value;
+    const pais = document.getElementById('country').value;
+    const estado = document.getElementById('state').value;
+    const ciudad = document.getElementById('city').value;
+    const indicaciones = document.getElementById('address2').value;
 
-    if (!error) { 
-      const { id } = paymentMethod;     // Código para el pago exitoso
-      try {
-        const { data } = await axios.post(
-          "http://localhost:3000/api/checkout",
-          {
-            id,
-            amount: totalPriceinBRLcents, // Envía el precio total en lugar del objeto { totalPrice }
-          }
-        );
-        console.log(data);
+    if (!nombre || !apellido || !direccion || !email || !telefono || !id || !pais || !estado || !ciudad || !indicaciones ) {
 
-        elements.getElement(CardElement).clear(); // Reestablece el espacio de la tarjeta cuando se confirma el pago
+      setShowModalForm(true);
 
-        // Mostrar el modal de pago exitoso aquí
-        setShowModal(true);
-        console.log("showmodal:",{showModal});
+    } else {
 
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-    }
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement)
+      });
+      setLoading(true);
+
+      if (!error) { 
+        const { id } = paymentMethod;     // Código para el pago exitoso
+        try {
+          const { data } = await axios.post(
+            "http://localhost:3000/api/checkout",
+            {
+              id,
+              amount: totalPriceinBRLcents, // Envía el precio total en lugar del objeto { totalPrice }
+              nombre: nombre,   // DATOS DEL COMPRADOR PARA ENVIO Y GUARDAR EN BD
+              apellido: apellido,
+              direccion: direccion,
+              email: email,
+              telefono: telefono,
+              identificacion: id,
+              pais: pais,
+              estado: estado,
+              ciudad: ciudad,
+              extras: indicaciones
+            }
+          );
+          console.log(data);
+
+          elements.getElement(CardElement).clear(); // Reestablece el espacio de la tarjeta cuando se confirma el pago
+
+          // Mostrar el modal de pago exitoso aquí
+          setShowModal(true);
+          console.log("showmodal:",{showModal});
+
+        } catch (error) {
+          console.log(error);
+        }
+        setLoading(false);
+      };
+    };
   };
 
   console.log(!stripe || loading);
@@ -161,14 +208,14 @@ export const CheckoutForm = () => {
               </form>
 
 
-          </div>
+          </div> {/*FORMULARIO PARA ENVIO*/ }
           <div className="col-md-7 col-lg-8">
             <h3 className="mb-3">Dirección de Envio</h3>
             <form className="needs-validation" noValidate>
               <div className="row g-3">
                 <div className="col-sm-6">
                   <label htmlFor="firstName" className="form-label">Nombre</label>
-                  <input type="text" className="form-control" id="firstName" placeholder="Ej: Juan Andres" value="" required />
+                  <input type="text" className="form-control" id="firstName" placeholder="Ej: Juan Andres"  required />
                   <div className="invalid-feedback">
                     Se requiere un nombre válido.
                   </div>
@@ -176,7 +223,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-sm-6">
                   <label htmlFor="lastName" className="form-label">Apellido</label>
-                  <input type="text" className="form-control" id="lastName" placeholder="Ej: Perez Gonzalez" value="" required />
+                  <input type="text" className="form-control" id="lastName" placeholder="Ej: Perez Gonzalez"  required />
                   <div className="invalid-feedback">
                     Se requiere un apellido válido.
                   </div>
@@ -185,7 +232,7 @@ export const CheckoutForm = () => {
                 <div className="col-12">
                   <label htmlFor="username" className="form-label">R.U.C o C.I.</label>
                   <div className="input-group has-validation">
-                    <input type="text" className="form-control" id="username" placeholder="RUC: 5670236-2 o C.I. 5670236" required />
+                    <input type="text" className="form-control" id="ID" placeholder="RUC: 5670236-2 o C.I. 5670236" required />
                     <div className="invalid-feedback">
                       Identidad Requerida.
                     </div>
@@ -202,7 +249,7 @@ export const CheckoutForm = () => {
 
                 <div className="col-12">
                   <label htmlFor="email" className="form-label">Teléfono <span className="text-body-secondary"></span></label>
-                  <input type="email" className="form-control" id="email" placeholder="Ej: 0981 333222" />
+                  <input type="email" className="form-control" id="phone" placeholder="Ej: 0981 333222" />
                   <div className="invalid-feedback">
                   Ingrese nro. de teléfono válido para recibir actualizaciones de envío.
                   </div>
@@ -217,7 +264,7 @@ export const CheckoutForm = () => {
                 </div>
 
                 <div className="col-12">
-                  <label htmlFor="address2" className="form-label">Indicaciones <span className="text-body-secondary">(Optional)</span></label>
+                  <label htmlFor="address2" className="form-label">Indicaciones</label>
                   <input type="text" className="form-control" id="address2" placeholder="Ej: Casa o Apartamento Nro. 1234" />
                 </div>
 
@@ -246,8 +293,8 @@ export const CheckoutForm = () => {
                 </div>
 
                 <div className="col-md-3">
-                  <label htmlFor="state" className="form-label">Ciudad</label>
-                  <select className="form-select" id="state" required>
+                  <label htmlFor="city" className="form-label">Ciudad</label>
+                  <select className="form-select" id="city" required>
                     <option value="">Elegir...</option>
 
                     {cities.map((city,index) => (
@@ -263,7 +310,7 @@ export const CheckoutForm = () => {
                 </div>
 
                 <div className="col-md-2">
-                  <label htmlFor="zip" className="form-label">Código Postal</label> <span className="text-body-secondary">(Optional)</span>
+                  <label htmlFor="zip" className="form-label">Código Postal (Optional)</label>
                   <input type="text" className="form-control" id="zip" placeholder=""  />
                   <div className="invalid-feedback">
                     Codigo Postal.
@@ -289,9 +336,9 @@ export const CheckoutForm = () => {
         </div>
 
         {/* Formulario de pago */}
+        <h4 className="mb-3">Pagos</h4>
         <div className="col-md-7 col-lg-8">
           <form className="card card-body" onSubmit={handleSubmit}>
-            <h4 className="mb-3">Pagos</h4>
             <div className="my-3">
               <div className="form-check">
                 <input id="credit" name="paymentMethod" type="radio" className="form-check-input" checked required />
@@ -301,18 +348,14 @@ export const CheckoutForm = () => {
                 <input id="debit" name="paymentMethod" type="radio" className="form-check-input" required />
                 <label className="form-check-label" htmlFor="debit">Débito</label>
               </div>
-              <div className="form-check">
-                <input id="paypal" name="paymentMethod" type="radio" className="form-check-input" required />
-                <label className="form-check-label" htmlFor="paypal">PayPal</label>
-              </div>
             </div>
 
             {/* User Card Input */}
-            <div className="form-group">
-              <CardElement />
+            <div id="card-element" style={{ border: "1px solid #ced4da", borderRadius: "5px" }}>
+            <CardElement options={cardElementOptions} />
             </div>
 
-            <button disabled={!stripe} className="btn btn-success">
+            <button disabled={!stripe} className="btn btn-success" style={{marginTop:"8px"}}>
               {loading ? (
                 <div className="spinner-border text-light" role="status">
                 </div>
@@ -341,7 +384,33 @@ export const CheckoutForm = () => {
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cerrar</button>
-                    <Link to="/menu" type="button" className="btn btn-primary" >Volver al Inicio</Link>
+                    <Link to="/" type="button" className="btn btn-primary" >Volver al Inicio</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )};
+
+           
+        {/*Show Modal si es que no se completaron los campos*/ }
+        {showModalForm && (
+          <div>   {/* Nuevo pedazo*/}
+            {/* Fondo oscurecido */}
+            <div className="backdrop"></div> {/* Se abre y se cierra el div aca para que solo el fondo tenga ese background, si se envuelve todo el modal, el modal tambien va a agarrar el backgroud y no solo el fondo detras */}
+            {/* Modal */}
+            <div className="modal" tabIndex="-1" style={{ display: "block" }}>
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title">Datos Incompletos</h5>
+                    <button type="button" className="btn-close" onClick={() => setShowModalForm(false)} aria-label="Close"></button>
+                  </div>
+                  <div className="modal-body">
+                    <p>Por favor, complete los campos con su información antes de proceder al pago.</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" onClick={() => setShowModalForm(false)}>Cerrar</button>
                   </div>
                 </div>
               </div>

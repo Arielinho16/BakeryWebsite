@@ -28,17 +28,17 @@ export const ItemList = ({ category }) => {
                     <CiCoffeeCup style={{ marginLeft: "3px",fontSize: "32px" }}/>  
                   </button>
                   <div className="collapse" id="home-collapse">
-                    <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="/cafe" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Cafés</a></li>
-                      <li><a href="/canasta" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Canastas</a></li>
-                      <li><a href="/combos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Combos</a></li>
-                      <li><a href="/dulces" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Dulces</a></li>
-                      <li><a href="/jugos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText" >Jugos</a></li>
-                      <li><a href="/salados" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Salados</a></li>
-                      <li><a href="/saludables" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Saludables</a></li>
-                      <li><a href="/pasteles" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Pastelería</a></li>
-                    </ul>
-                  </div>
+                      <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><Link to="/cafe" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Cafés</Link></li>
+                        <li><Link to="/canasta" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Canastas</Link></li>
+                        <li><Link to="/combos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Combos</Link></li>
+                        <li><Link to="/dulces" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Dulces</Link></li>
+                        <li><Link to="/jugos" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Jugos</Link></li>
+                        <li><Link to="/salados" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Salados</Link></li>
+                        <li><Link to="/saludables" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Saludables</Link></li>
+                        <li><Link to="/pasteles" className="link-body-emphasis d-inline-flex text-decoration-none rounded sidebarText">Pastelería</Link></li>
+                      </ul>
+                    </div>
                 </li>
             </div>
             <div className="border-bottom">
