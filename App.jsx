@@ -19,7 +19,7 @@ export const App = () => {
       <Router>
         <NavBarControlled />
         <Routes>
-          <Route path="/" element={<ItemList category="inicio" />} />
+          <Route path="/"/>
           <Route path="/user" element={<ItemList category="usuario" />} />
           <Route path="/menu" element={<Layout title="Menú"><ItemListforMenu category="menu" /> </Layout>} />
           <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /> </Layout>} />

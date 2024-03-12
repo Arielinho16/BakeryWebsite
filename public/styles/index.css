@@ -429,3 +429,8 @@ box-shadow: 2px 2px 2px #000800;
 
   transform: scale(1.05); /* Aumenta en un 10% al pasar el mouse */
 }
+
+#modalButton:hover {
+  background-color: #8b321e; /* Cambia el color de fondo al marrón más claro cuando pasas el ratón sobre el botón */
+  border: 1px solid whitesmoke;
+}

@@ -46,7 +46,7 @@ app.use(bodyParser.json());
 
 app.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
-  const { id, amount,nombre,apellido,identificacion, email,direccion,telefono,indicaciones,pais,ciudad,estado } = req.body;
+  const { id, amount,nombre,apellido,identificacion, email,direccion,telefono,extras,pais,ciudad,estado, metodo_pago } = req.body;
   console.log("Datos recibidos en el backend:", { id });
   console.log("Datos recibidos en el backend:", { amount});
   console.log("Datos recibidos en el backend:", { nombre});
@@ -55,10 +55,11 @@ app.post("/api/checkout", async (req, res) => {
   console.log("Datos recibidos en el backend:", { email});
   console.log("Datos recibidos en el backend:", { direccion});
   console.log("Datos recibidos en el backend:", { telefono});
-  console.log("Datos recibidos en el backend:", { indicaciones});
+  console.log("Datos recibidos en el backend:", { extras});
   console.log("Datos recibidos en el backend:", { pais});
   console.log("Datos recibidos en el backend:", { ciudad});
   console.log("Datos recibidos en el backend:", { estado});
+  console.log("Datos recibidos en el backend:", {metodo_pago});
 
   try {
     const payment = await stripe.paymentIntents.create({

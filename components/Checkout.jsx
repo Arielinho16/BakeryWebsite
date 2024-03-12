@@ -16,10 +16,10 @@ export const CheckoutForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalForm, setShowModalForm] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isCardElementFilled,setCardElementFilled] = useState(false);
+  const [cardMethod, setPaymentMethod] = useState('credito'); 
+  const [confirmPaymentMethod,setConfirmation] = useState('credito');
  
-
- 
-
   const cardElementOptions = {
     style: {
       base: {
@@ -30,7 +30,8 @@ export const CheckoutForm = () => {
         backgroundColor: "#ffffff", // Establece el color de fondo del elemento de tarjeta a blanco
         "::placeholder": {
         color: "#6c757d"
-        }
+        },
+        marginBottom: "10px"
       }
     }
   };
@@ -90,36 +91,61 @@ export const CheckoutForm = () => {
     }
   };
 
+  const handleCardElementChange = (event ) =>{
+
+    setCardElementFilled(event.complete);
+  };
+
+    // En la función handlePaymentMethod, usa el estado paymentMethod para determinar el método de pago
+    const handlePaymentMethod = (event) => {
+      const selectedMethod = event.target.value;
+      setPaymentMethod(selectedMethod);
+      console.log("Confirmacion", selectedMethod);
+    };
+
+    const handleFinalPaymentMethod= () => {
+      const finalMethod = cardMethod;
+      setConfirmation(finalMethod);
+      console.log("Confirmacion", finalMethod);
+    }
+
+  /*PAGO*/
   const handleSubmit = async e => {
     e.preventDefault();
 
     // Validar campos específicos
+
    
     const nombre = document.getElementById('firstName').value;
     const apellido = document.getElementById('lastName').value;
     const direccion = document.getElementById('address').value;
     const email = document.getElementById('email').value;
     const telefono = document.getElementById('phone').value;
-    const id = document.getElementById('ID').value;
+    const identificacion = document.getElementById('ID').value;
     const pais = document.getElementById('country').value;
     const estado = document.getElementById('state').value;
     const ciudad = document.getElementById('city').value;
     const indicaciones = document.getElementById('address2').value;
+    const id = '';
+    
 
-    if (!nombre || !apellido || !direccion || !email || !telefono || !id || !pais || !estado || !ciudad || !indicaciones ) {
+    if (!nombre || !apellido || !direccion || !email || !telefono || !identificacion || !pais || !estado || !ciudad || !indicaciones ) {
 
       setShowModalForm(true);
 
     } else {
-
+      
+      
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement)
       });
       setLoading(true);
 
+
       if (!error) { 
         const { id } = paymentMethod;     // Código para el pago exitoso
+        console.log("Id:", id);
         try {
           const { data } = await axios.post(
             "http://localhost:3000/api/checkout",
@@ -131,11 +157,12 @@ export const CheckoutForm = () => {
               direccion: direccion,
               email: email,
               telefono: telefono,
-              identificacion: id,
+              identificacion: identificacion,
               pais: pais,
               estado: estado,
               ciudad: ciudad,
-              extras: indicaciones
+              extras: indicaciones,
+              metodo_pago: confirmPaymentMethod //si es debito o credito
             }
           );
           console.log(data);
@@ -339,23 +366,32 @@ export const CheckoutForm = () => {
         <h4 className="mb-3">Pagos</h4>
         <div className="col-md-7 col-lg-8">
           <form className="card card-body" onSubmit={handleSubmit}>
-            <div className="my-3">
-              <div className="form-check">
-                <input id="credit" name="paymentMethod" type="radio" className="form-check-input" checked required />
-                <label className="form-check-label" htmlFor="credit">Crédito</label>
+          <div className="my-3">
+              <div className="form-check custom-checkbox">
+                <input id="credit" name="paymentMethod" type="radio" className="form-check-input" value="credito" checked={cardMethod === 'credito'} onChange={handlePaymentMethod} required />
+                <label className="form-check-label" htmlFor="credit" style={{ fontSize: "20px", fontWeight: "30px" }}>Crédito</label>
               </div>
-              <div className="form-check">
-                <input id="debit" name="paymentMethod" type="radio" className="form-check-input" required />
-                <label className="form-check-label" htmlFor="debit">Débito</label>
+              <div className="form-check custom-checkbox">
+                <input id="debit" name="paymentMethod" type="radio" className="form-check-input" value="debito" checked={cardMethod === 'debito'} onChange={handlePaymentMethod} required />
+                <label className="form-check-label" htmlFor="debit" style={{ fontSize: "20px", fontWeight: "30px" }}>Débito</label>
               </div>
             </div>
-
             {/* User Card Input */}
-            <div id="card-element" style={{ border: "1px solid #ced4da", borderRadius: "5px" }}>
-            <CardElement options={cardElementOptions} />
+            <div id="card-element" style={{ border: "1px solid #ced4da", borderRadius: "5px" ,marginBottom:"10px"}}>
+            <CardElement options={cardElementOptions} onChange={handleCardElementChange}/> {/*Si es que el los elementos de la tarjeta no se llenan handleCardElementChange no va a habilitar el boton de pagar*/}
             </div>
 
-            <button disabled={!stripe} className="btn btn-success" style={{marginTop:"8px"}}>
+            <button disabled={!stripe || !isCardElementFilled} onClick={handleFinalPaymentMethod} className="btn btn-success" 
+            style={{marginTop:"12px",   margin: "0 auto", backgroundColor: "#5d2417",
+            width: "200px",
+            padding: "0.5em",
+            border: "1px solid whitesmoke",
+            borderRadius: "5px",
+            boxShadow: "5px 5px 5px #000800",
+            color: "white",
+            textDecoration: "none"
+            }}>
+
               {loading ? (
                 <div className="spinner-border text-light" role="status">
                 </div>
@@ -383,8 +419,18 @@ export const CheckoutForm = () => {
                     <p>Tu pago se ha procesado con éxito.</p>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cerrar</button>
-                    <Link to="/" type="button" className="btn btn-primary" >Volver al Inicio</Link>
+                    <button id="modalButton" type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cerrar</button>
+                    <Link id="modalButton" to="/" type="button" className="btn btn-secondary" 
+            style={{ margin: "0 auto", backgroundColor: "#5d2417",
+            width: "200px",
+            padding: "0.5em",
+            border: "1px solid whitesmoke",
+            borderRadius: "5px",
+            boxShadow: "5px 5px 5px #000800",
+            color: "white",
+            textDecoration: "none"
+            }} > Volver al Inicio</Link> 
+                    
                   </div>
                 </div>
               </div>
