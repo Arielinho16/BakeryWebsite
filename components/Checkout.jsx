@@ -7,7 +7,7 @@ import axios from "axios";
 export const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [cart] = useContext(CartContext);
+  const [cart,emptyCart] = useContext(CartContext);
   const [selectedState,setState] = useState('');
   const [cities,setCities] = useState([]);
   const [promotionalCode,setPromotionalCode] = useState('');
@@ -47,6 +47,8 @@ export const CheckoutForm = () => {
 
   const codigosPromocionalesRobinas = ['APSA1210','VACC2810','CRVM1302','LAMC1234'];
 
+  // Definir el estado para el código promocional utilizado 
+  const [usedPromoCode, setUsedPromoCode] = useState(null);
 
   const handlePromotionalCode = (e) => {
 
@@ -63,7 +65,7 @@ export const CheckoutForm = () => {
         setTotalPrice(newPrice);
         setTotalPriceinBRLcents(Math.round(((newPrice / 1.480).toFixed(2))*100));
         setUsedPromotionalCode(...usedPromotionalCode,codeProm); //actualizamos la lista de codigos usados con el nuevo codigo ya usado
-
+        setUsedPromoCode(codeProm); // Guardar el código promocional utilizado para luego registrarlo en la BD
       }else{
         console.log("Código promocional inválido");
         setErrorCodeProm('Código promocional inválido');
@@ -126,11 +128,13 @@ export const CheckoutForm = () => {
     const estado = document.getElementById('state').value;
     const ciudad = document.getElementById('city').value;
     const indicaciones = document.getElementById('address2').value;
-    const id = '';
+  
     
 
     if (!nombre || !apellido || !direccion || !email || !telefono || !identificacion || !pais || !estado || !ciudad || !indicaciones ) {
 
+      const audio = new Audio('/sounds/error.mp3'); // Ruta del archivo de sonido
+      audio.play();
       setShowModalForm(true);
 
     } else {
@@ -146,7 +150,9 @@ export const CheckoutForm = () => {
       if (!error) { 
         const { id } = paymentMethod;     // Código para el pago exitoso
         console.log("Id:", id);
+
         try {
+          //Aca enviamos todo lo que necesitamos de nuestro front a nuestro back!!!
           const { data } = await axios.post(
             "http://localhost:3000/api/checkout",
             {
@@ -162,17 +168,26 @@ export const CheckoutForm = () => {
               estado: estado,
               ciudad: ciudad,
               extras: indicaciones,
-              metodo_pago: confirmPaymentMethod //si es debito o credito
+              metodo_pago: confirmPaymentMethod, //si es debito o credito
+              promoCode: usedPromoCode || null, // Enviar null si no hay código promocional
+              monto_total: totalPrice,
+              products: cart.map(item => ({
+                name: item.name,
+                quantity: item.quantity,
+                price: item.price
+              }))
             }
           );
           console.log(data);
 
           elements.getElement(CardElement).clear(); // Reestablece el espacio de la tarjeta cuando se confirma el pago
 
+          const audio = new Audio('/sounds/ding.mp3'); // Ruta del archivo de sonido
+          audio.play();
           // Mostrar el modal de pago exitoso aquí
           setShowModal(true);
           console.log("showmodal:",{showModal});
-
+  
         } catch (error) {
           console.log(error);
         }
@@ -180,6 +195,7 @@ export const CheckoutForm = () => {
       };
     };
   };
+
 
   console.log(!stripe || loading);
 
@@ -419,8 +435,7 @@ export const CheckoutForm = () => {
                     <p>Tu pago se ha procesado con éxito.</p>
                   </div>
                   <div className="modal-footer">
-                    <button id="modalButton" type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cerrar</button>
-                    <Link id="modalButton" to="/" type="button" className="btn btn-secondary" 
+                    <Link id="modalButton" to="/menu" type="button" className="btn btn-secondary" 
             style={{ margin: "0 auto", backgroundColor: "#5d2417",
             width: "200px",
             padding: "0.5em",
@@ -429,7 +444,7 @@ export const CheckoutForm = () => {
             boxShadow: "5px 5px 5px #000800",
             color: "white",
             textDecoration: "none"
-            }} > Volver al Inicio</Link> 
+            }} > Volver</Link> 
                     
                   </div>
                 </div>

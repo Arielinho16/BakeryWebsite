@@ -12,7 +12,10 @@ module.exports = {
         test: /\.(js|jsx)$/, // Archivos JS y JSX
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader' // Usa Babel para transpilar el código
+          loader: 'babel-loader', // Usa Babel para transpilar el código
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         }
       },
       {
@@ -25,3 +28,4 @@ module.exports = {
     extensions: ['.js', '.jsx'] // Extensiones de archivos a resolver
   }
 };
+

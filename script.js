@@ -87,8 +87,8 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
 app.post("/api/checkout", async (req, res) => {
-  const { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago } = req.body;
-  console.log("Datos recibidos en el backend:", { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago });
+  const { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode,monto_total,products} = req.body;
+  console.log("Datos recibidos en el backend:", { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode,monto_total,products});
 
   try {
     const payment = await stripe.paymentIntents.create({
@@ -101,6 +101,7 @@ app.post("/api/checkout", async (req, res) => {
     });
 
     console.log(payment);
+
     return res.status(302).header("Location", "http://localhost:3000").end();
   } catch (error) {
     console.log(error);
