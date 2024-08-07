@@ -64,7 +64,6 @@ async function setupDatabase() {
         // Insertar el producto si no existe
         const values = [id, name, price, imgUrl, category];
         await client.query(insertQuery, values);
-        
       }
     }
   } catch (err) {
@@ -87,10 +86,41 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
 app.post("/api/checkout", async (req, res) => {
-  const { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode,monto_total,products} = req.body;
-  console.log("Datos recibidos en el backend:", { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode,monto_total,products});
+  const { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode, monto_total, products } = req.body;
+  console.log("Datos recibidos en el backend:", { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode, monto_total, products });
 
   try {
+     // Crear cliente en la base de datos o actualizar la información existente
+     const insertClienteQuery = `
+     INSERT INTO clientes (ruc_ci, nombre, apellido, email, telefono, direccion, indicaciones, pais, estado, ciudad, codigo_postal)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+     ON CONFLICT (ruc_ci) DO UPDATE 
+     SET nombre = EXCLUDED.nombre,
+         apellido = EXCLUDED.apellido,
+         email = EXCLUDED.email,
+         telefono = EXCLUDED.telefono,
+         direccion = EXCLUDED.direccion,
+         indicaciones = EXCLUDED.indicaciones,
+         pais = EXCLUDED.pais,
+         estado = EXCLUDED.estado,
+         ciudad = EXCLUDED.ciudad,
+         codigo_postal = EXCLUDED.codigo_postal;
+   `;
+   const clienteValues = [identificacion, nombre, apellido, email, telefono, direccion, extras || '', pais, estado, ciudad, ''];
+   await client.query(insertClienteQuery, clienteValues);
+
+   // Crear pedido y productos en la base de datos
+   for (const product of products) {
+     const totalPrecio = product.quantity * product.price; // Cálculo del precio total por producto
+     const insertPedidoQuery = `
+       INSERT INTO pedidos (cliente_id, producto_id, cantidad, precio_total, metodo_pago, codigo_promocional, estado_pedido)
+       VALUES ($1, (SELECT id FROM productos WHERE name = $2 LIMIT 1), $3, $4, $5, $6, $7);
+     `;
+     const pedidoValues = [identificacion, product.name, product.quantity, totalPrecio, metodo_pago, promoCode, 'Pendiente'];
+     await client.query(insertPedidoQuery, pedidoValues);
+   }
+
+    // Confirmación del pago con Stripe
     const payment = await stripe.paymentIntents.create({
       amount,
       currency: "BRL",
@@ -101,7 +131,6 @@ app.post("/api/checkout", async (req, res) => {
     });
 
     console.log(payment);
-
     return res.status(302).header("Location", "http://localhost:3000").end();
   } catch (error) {
     console.log(error);
@@ -180,7 +209,7 @@ app.get('/buscar', async (req, res) => {
   const query = req.query.query.toLowerCase();
 
   try {
- // Buscar en productos por nombre
+    // Buscar en productos por nombre
     const productResult = await client.query(
       'SELECT category FROM productos WHERE LOWER(name) = $1',
       [query]
@@ -227,8 +256,9 @@ app.get('/menu/:category', (req, res) => {
     // Redirigir a la página general si la categoría no es válida
     res.redirect('/menu');
   }
-}); 
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+

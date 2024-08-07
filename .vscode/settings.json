@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/views/partials/header.ejs"
+    "livePreview.defaultPreviewPath": "/views/partials/header.ejs",
+    "djlint.showInstallError": false
 }

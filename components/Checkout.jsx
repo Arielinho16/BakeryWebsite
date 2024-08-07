@@ -133,8 +133,7 @@ export const CheckoutForm = () => {
 
     if (!nombre || !apellido || !direccion || !email || !telefono || !identificacion || !pais || !estado || !ciudad || !indicaciones ) {
 
-      const audio = new Audio('/sounds/error.mp3'); // Ruta del archivo de sonido
-      audio.play();
+      playSound('/sounds/error.mp3');
       setShowModalForm(true);
 
     } else {
@@ -182,8 +181,7 @@ export const CheckoutForm = () => {
 
           elements.getElement(CardElement).clear(); // Reestablece el espacio de la tarjeta cuando se confirma el pago
 
-          const audio = new Audio('/sounds/ding.mp3'); // Ruta del archivo de sonido
-          audio.play();
+          playSound('/sounds/ding.mp3');
           // Mostrar el modal de pago exitoso aquí
           setShowModal(true);
           console.log("showmodal:",{showModal});
@@ -196,6 +194,11 @@ export const CheckoutForm = () => {
     };
   };
 
+    // Función para reproducir sonido
+  const playSound = (path) => {
+    const audio = new Audio(path);
+    audio.play();
+  };
 
   console.log(!stripe || loading);
 
@@ -429,7 +432,6 @@ export const CheckoutForm = () => {
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title">¡Pago Exitoso!</h5>
-                    <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
                   </div>
                   <div className="modal-body">
                     <p>Tu pago se ha procesado con éxito.</p>
@@ -444,7 +446,7 @@ export const CheckoutForm = () => {
             boxShadow: "5px 5px 5px #000800",
             color: "white",
             textDecoration: "none"
-            }} > Volver</Link> 
+            }} > Listo</Link> 
                     
                   </div>
                 </div>
@@ -464,8 +466,7 @@ export const CheckoutForm = () => {
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title">Datos Incompletos</h5>
-                    <button type="button" className="btn-close" onClick={() => setShowModalForm(false)} aria-label="Close"></button>
+                    <h5 className="modal-title">Datos Incompletos</h5>              
                   </div>
                   <div className="modal-body">
                     <p>Por favor, complete los campos con su información antes de proceder al pago.</p>
@@ -484,5 +485,12 @@ export const CheckoutForm = () => {
 
   );
 };
+
+
+
+
+
+
+
 
 

@@ -67,7 +67,7 @@ export const ItemList = ({ category }) => {
         </div>
       </div>
       <div className="col-md-9">
-        {/* List of Products */}
+        {/* Lista de Productos */}
         <div className="items-list">
           {filteredItems.map((product, idx) => {
             return <Item key={product.id} {...product} />;
