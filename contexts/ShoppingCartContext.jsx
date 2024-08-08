@@ -7,7 +7,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Función para vaciar el carrito
   const emptyCart = () => {
-    console.log("Vaciando carrito!!"); // Verifica si este mensaje aparece en la consola
+    console.log("Vaciando carrito!!");
     setCart([]);
   };
 

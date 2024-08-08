@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CardElement, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import { CartContext } from "../contexts/ShoppingCartContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const CheckoutForm = () => {
@@ -19,7 +19,8 @@ export const CheckoutForm = () => {
   const [isCardElementFilled,setCardElementFilled] = useState(false);
   const [cardMethod, setPaymentMethod] = useState('credito'); 
   const [confirmPaymentMethod,setConfirmation] = useState('credito');
- 
+  const navigate = useNavigate();
+
   const cardElementOptions = {
     style: {
       base: {
@@ -198,6 +199,13 @@ export const CheckoutForm = () => {
   const playSound = (path) => {
     const audio = new Audio(path);
     audio.play();
+  };
+
+  const handleCloseModal = () => {
+
+    setTimeout(() => {
+      navigate("/", { replace: true }); // Redirige a la página de inicio después de un pequeño retraso
+    }, 100);
   };
 
   console.log(!stripe || loading);
@@ -437,16 +445,18 @@ export const CheckoutForm = () => {
                     <p>Tu pago se ha procesado con éxito.</p>
                   </div>
                   <div className="modal-footer">
-                    <Link id="modalButton" to="/" type="button" className="btn btn-secondary" 
-            style={{ margin: "0 auto", backgroundColor: "#5d2417",
-            width: "200px",
-            padding: "0.5em",
-            border: "1px solid whitesmoke",
-            borderRadius: "5px",
-            boxShadow: "5px 5px 5px #000800",
-            color: "white",
-            textDecoration: "none"
-            }} > Listo</Link> 
+                    <button onClick={handleCloseModal} className="btn btn-secondary"
+                      style={{
+                        margin: "0 auto",
+                        backgroundColor: "#5d2417",
+                        width: "200px",
+                        padding: "0.5em",
+                        border: "1px solid whitesmoke",
+                        borderRadius: "5px",
+                        boxShadow: "5px 5px 5px #000800",
+                        color: "white",
+                        textDecoration: "none"
+                      }}>Listo</button>
                     
                   </div>
                 </div>

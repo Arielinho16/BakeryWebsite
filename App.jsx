@@ -55,5 +55,9 @@ const NavBarControlled = () => {
     return null;
   }
 
+  if (location.pathname === '/') {
+    return null;
+  }
+
   return <NavBar />;
 };
