@@ -437,7 +437,7 @@ export const CheckoutForm = () => {
                     <p>Tu pago se ha procesado con éxito.</p>
                   </div>
                   <div className="modal-footer">
-                    <Link id="modalButton" to="/menu" type="button" className="btn btn-secondary" 
+                    <Link id="modalButton" to="/" type="button" className="btn btn-secondary" 
             style={{ margin: "0 auto", backgroundColor: "#5d2417",
             width: "200px",
             padding: "0.5em",

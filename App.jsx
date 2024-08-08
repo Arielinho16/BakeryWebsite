@@ -9,6 +9,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { CheckoutForm } from "./components/Checkout";
 import { ItemListforMenu } from "./components/ItemListforMenu";
+import { Index } from "./components/inicio";
+
+
 
 // Agrega aquí tu clave pública de Stripe
 const stripePromise = loadStripe("pk_test_51OmmqBK4P6Uiq4axZvTPwvHJhu5JIHJB9zufHtZ2WmuWRwJqUH8iHOf9hNFug4XYA4kOvcD2Jqjp3nMzEMOMUv88000vxGvHGn");
@@ -19,7 +22,7 @@ export const App = () => {
       <Router>
         <NavBarControlled />
         <Routes>
-          <Route path="/"/>
+          <Route exact path="/" element={<Index />} />
           <Route path="/user" element={<ItemList category="usuario" />} />
           <Route path="/menu" element={<Layout title="Menú"><ItemListforMenu category="menu" /> </Layout>} />
           <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /> </Layout>} />
