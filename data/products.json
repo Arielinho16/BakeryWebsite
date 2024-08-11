@@ -16,7 +16,7 @@
   {
     "id":  3,
     "name": "Cafe con Leche",
-    "price":  9500,
+    "price": 10500,
     "imgUrl": "./images/cafes/cafe_con_leche.jpg",
     "category": "cafe"
   },
@@ -30,7 +30,7 @@
   {
     "id":  5,
     "name": "Espresso",
-    "price":  3000,
+    "price": 6000,
     "imgUrl": "./images/cafes/expresso.png",
     "category": "cafe"
   },
@@ -59,7 +59,7 @@
   {
     "id":  9,
     "name": "Canasta Tradicional",
-    "price":  80000,
+    "price": 110000,
     "imgUrl": "./images/canastas/canasta.png",
     "category": "canasta"
   },
@@ -174,14 +174,14 @@
     "id":  25,
     "name": "Jugo de Naranja",
     "price":  6000,
-    "imgUrl": "./images/jugos/jugo_naranja.jpg",
+    "imgUrl": "./images/jugos/jugo_naranja.png",
     "category": "jugos"
   },
   {
     "id":  26,
     "name": "Jugo de Frutilla",
     "price":  7000,
-    "imgUrl": "./images/jugos/jugo_frutilla.jpg",
+    "imgUrl": "./images/jugos/jugo_frutilla.png",
     "category": "jugos"
   },
   {
@@ -278,8 +278,22 @@
   {
     "id":  40,
     "name": "Capuccino con Alfajor de Maicena",
-    "price":  18000,
+    "price": 16000,
     "imgUrl": "./images/combos/combo1.png",
+    "category": "combos"
+  },
+  {
+    "id": 41,
+    "name": "Cafe con Leche y Mixto",
+    "price": 18000,
+    "imgUrl": "./images/combos/combo2.png",
+    "category": "combos"
+  },
+  {
+    "id": 42,
+    "name": "Jugo de Naranja con empanadas",
+    "price": 15000,
+    "imgUrl": "./images/combos/combo3.png",
     "category": "combos"
   }
 

@@ -37,8 +37,8 @@
     background-color: #f9f9f9;
     margin: 20px;
     padding: 20px;
-    width: 200px;
-    height:270px;
+    width: 280px;
+      height: 330px;
     border: 1px solid whitesmoke;
     border-radius: 5px;
     box-shadow: 5px 5px 5px #000800;
@@ -103,7 +103,7 @@
 }
       
 .item-minus-button {
-    background-color: #e7211a;
+    background-color: #5d2417;
     border-radius: 5px;
     color: #fff;
     border: none;
@@ -117,11 +117,11 @@
   }
 
 .item-minus-button:hover{
-  background-color: #eb5954;
+  background-color: #8a3421;
 }
   
 .item-plus-button {
-    background-color: #337ab7;
+    background-color: #5d2417;
     margin-right: 5px;
     border-radius: 5px;
     color: #fff;
@@ -134,7 +134,7 @@
   }
 
 .item-plus-button:hover{
-  background-color: #3897eb;
+  background-color: #8a3421;
 }
 
 .item-description {
@@ -433,4 +433,30 @@ box-shadow: 2px 2px 2px #000800;
 #modalButton:hover {
   background-color: #8b321e; /* Cambia el color de fondo al marrón más claro cuando pasas el ratón sobre el botón */
   border: 1px solid whitesmoke;
+}
+/*LOCALES*/
+
+footer.container p.float-end a {
+  color: white;
+  /* Cambia el color del texto a blanco */
+}
+
+.featurette a {
+  color: white;
+}
+
+#local1 {
+  width: 400px;
+  height: 400px;
+}
+
+/* nosotros */
+#videoNosotros {
+  display: block;
+  margin: auto;
+  /* Centra la imagen horizontalmente */
+  margin-top: 50px;
+  margin-bottom: 100px;
+  /*espacio que queremos dejar debajo */
+  border: 2px solid whitesmoke;
 }

@@ -50,7 +50,7 @@ export const Item = ({ name, price, id, imgUrl }) => {
       )}
 
       <div className="name-box">{name}</div>
-      <img src={imgUrl} width="150" height="120" />
+      <img src={imgUrl} width="180" height="180" />
       <div className="item-price">{price}Gs.</div>
 
       {quantityPerItem === 0 ? (

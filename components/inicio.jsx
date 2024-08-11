@@ -218,6 +218,12 @@ export const Index = () => {
                     </div>
                 </div>
             </div>
+
+            <footer className="container">
+                <p className="float-end">
+                    <a href="#">Volver arriba</a>
+                </p>
+            </footer>
         </>
     );
 };

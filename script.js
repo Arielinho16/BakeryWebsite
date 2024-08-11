@@ -207,6 +207,22 @@ app.get("/combos", async (req, res) => {
   res.render("combos.ejs");
 });
 
+app.get("/cart", async (req, res) => {
+  res.render("cart.ejs");
+});
+
+app.get("/checkout", async (req, res) => {
+  res.render("checkout.ejs");
+});
+
+app.get("/contratacion", async (req, res) => {
+  res.render("contratacion.ejs");
+});
+
+app.get("/locales", async (req, res) => {
+  res.render("locales.ejs");
+});
+
 // Ruta de búsqueda
 app.get('/buscar', async (req, res) => {
   const query = req.query.query.toLowerCase();

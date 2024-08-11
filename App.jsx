@@ -10,8 +10,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { CheckoutForm } from "./components/Checkout";
 import { ItemListforMenu } from "./components/ItemListforMenu";
 import { Index } from "./components/inicio";
-
-
+import { Informacion } from "./components/nosotros";
+import { Empresa } from "./components/empresa";
+import { Contrato } from "./components/contratacion";
+import { Local } from "./components/locales";
 
 // Agrega aquí tu clave pública de Stripe
 const stripePromise = loadStripe("pk_test_51OmmqBK4P6Uiq4axZvTPwvHJhu5JIHJB9zufHtZ2WmuWRwJqUH8iHOf9hNFug4XYA4kOvcD2Jqjp3nMzEMOMUv88000vxGvHGn");
@@ -23,6 +25,10 @@ export const App = () => {
         <NavBarControlled />
         <Routes>
           <Route exact path="/" element={<Index />} />
+          <Route exact path="/nosotros" element={<Informacion />} />
+          <Route exact path="/empresa" element={<Empresa />} />
+          <Route exact path="/contratacion" element={<Contrato />} />
+          <Route exact path="/locales" element={<Local />} />
           <Route path="/user" element={<ItemList category="usuario" />} />
           <Route path="/menu" element={<Layout title="Menú"><ItemListforMenu category="menu" /> </Layout>} />
           <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /> </Layout>} />
@@ -51,13 +57,9 @@ const NavBarControlled = () => {
   const location = useLocation();
 
   // Ocultar el NavBar en la ruta de checkout
-  if (location.pathname === '/checkout') {
+  if (location.pathname === '/checkout' || location.pathname === '/' || location.pathname === '/contratacion' ||
+    location.pathname === '/empresa' || location.pathname === '/nosotros' || location.pathname === '/locales') 
     return null;
-  }
-
-  if (location.pathname === '/') {
-    return null;
-  }
 
   return <NavBar />;
 };

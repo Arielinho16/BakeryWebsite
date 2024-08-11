@@ -54,6 +54,7 @@ body,html{
     font-optical-sizing: auto;
     font-style: normal;
     color: white;
+    margin-bottom: 60px;
 }
 
 /* Estilos para la barra de navegación */
@@ -113,8 +114,10 @@ body,html{
 }
 
 #carouselExampleCaptions .carousel-item img {  /*Colocamos id y clase para no confundir con los demas carrouseles*/
-    max-width: 83.2%; /* Ajusta el ancho máximo de la imagen al tamaño del contenedor */
-    max-height: 650px; /* Establece una altura máxima para las imágenes */
+    max-width: 75%;
+        /* Ajusta el ancho máximo de la imagen al tamaño del contenedor */
+        max-height: 800px;
+        /* Establece una altura máxima para las imágenes */
     display: block;
     margin: auto; /* Centra la imagen horizontalmente */
     margin-bottom: 100px; /*espacio que queremos dejar debajo */
@@ -122,6 +125,7 @@ body,html{
 }
 
 #Categorias{
+    margin-top: 40px;
     text-align:center; /* Centra el texto */
     font-size: 300%; /* Tamaño de fuente */
     color: white; /* Color del texto */
@@ -134,7 +138,8 @@ body,html{
 }
 #carouselExampleAutoplaying .carousel-item img {
     width: 320px;
-    height: 200px; /*determina el tamanho de una imagen, debe ser SIEMPRE en pixeles por que en % no deja el tamanho de las imagenes igual*/
+    height: 280px;
+        /*determina el tamanho de una imagen, debe ser SIEMPRE en pixeles por que en % no deja el tamanho de las imagenes igual*/
     display: block;
     margin:auto;
     margin-top: 20px;
@@ -210,7 +215,8 @@ body,html{
 
 .card img{
     width: 100%;
-    height: 160px; /*Establecemos como tamanho predeterminado(si usamos ma-height es para establecer un tamanho maximo)*/
+    height: 100%;
+        /*Establecemos como tamanho predeterminado(si usamos ma-height es para establecer un tamanho maximo)*/
 }
 #cards-inicio .card-title{
     font-family: "Playfair Display", serif;
@@ -372,6 +378,7 @@ body,html{
     margin-bottom: 40px;
 }
 
+
 .userText{
     font-size: 130%;
     font-family: "Playfair Display", serif;
@@ -419,7 +426,6 @@ body,html{
     margin:auto;
     margin-bottom: 40px; /*espacio que queremos dejar debajo */
     
-
 }
 
 .profileInfo{
@@ -638,4 +644,19 @@ body,html{
 
 .checkout h1{
     font-size: 300px;
+}
+/*contrataciones*/
+
+#contratacion img {
+    width: 400px;
+    height: 300px;
+    /*determina el tamanho de una imagen, debe ser SIEMPRE en pixeles por que en % no deja el tamanho de las imagenes igual*/
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    /*espacio que queremos dejar debajo */
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px #000800;
 }
