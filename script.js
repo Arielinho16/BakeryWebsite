@@ -6,6 +6,17 @@ import Stripe from "stripe";
 import cors from "cors";
 import fs from 'fs';
 import pkg from 'pg';
+import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+import PDFDocument from 'pdfkit';
+import moment from 'moment';
+
+// Obtener __dirname en un entorno de módulo ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const { Client } = pkg;
 
@@ -21,6 +32,25 @@ const config = {
   clientID: process.env.CLIENTID,
   issuerBaseURL: process.env.ISSUERBASEURL,
 };
+
+// Verificar si la carpeta 'uploads' existe, si no, crearla
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
+// Configuración de multer para manejar la subida de archivos
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Carpeta donde se guardarán los archivos
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, `${uniqueSuffix}-${file.originalname}`);
+  }
+});
+
+const upload = multer({ storage });
 
 // Configuración de la conexión a la base de datos
 const client = new Client({
@@ -85,40 +115,59 @@ app.set('view engine', 'ejs');
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
+// Ruta de pago y generación de factura
 app.post("/api/checkout", async (req, res) => {
-  const { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode, monto_total, products } = req.body;
-  console.log("Datos recibidos en el backend:", { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode, monto_total, products });
+  const { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode, monto_total, products, sucursal } = req.body;
+  console.log("Datos recibidos en el backend:", { id, amount, nombre, apellido, identificacion, email, direccion, telefono, extras, pais, ciudad, estado, metodo_pago, promoCode, monto_total, products, sucursal });
 
   try {
-     // Crear cliente en la base de datos o actualizar la información existente
-     const insertClienteQuery = `
-     INSERT INTO clientes (ruc_ci, nombre, apellido, email, telefono, direccion, indicaciones, pais, estado, ciudad, codigo_postal)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-     ON CONFLICT (ruc_ci) DO UPDATE 
-     SET nombre = EXCLUDED.nombre,
-         apellido = EXCLUDED.apellido,
-         email = EXCLUDED.email,
-         telefono = EXCLUDED.telefono,
-         direccion = EXCLUDED.direccion,
-         indicaciones = EXCLUDED.indicaciones,
-         pais = EXCLUDED.pais,
-         estado = EXCLUDED.estado,
-         ciudad = EXCLUDED.ciudad,
-         codigo_postal = EXCLUDED.codigo_postal;
-   `;
-   const clienteValues = [identificacion, nombre, apellido, email, telefono, direccion, extras || '', pais, estado, ciudad, ''];
-   await client.query(insertClienteQuery, clienteValues);
+    // Crear cliente en la base de datos o actualizar la información existente
+    const insertClienteQuery = `
+      INSERT INTO clientes (ruc_ci, nombre, apellido, email, telefono, direccion, indicaciones, pais, estado, ciudad, codigo_postal)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      ON CONFLICT (ruc_ci) DO UPDATE 
+      SET nombre = EXCLUDED.nombre,
+          apellido = EXCLUDED.apellido,
+          email = EXCLUDED.email,
+          telefono = EXCLUDED.telefono,
+          direccion = EXCLUDED.direccion,
+          indicaciones = EXCLUDED.indicaciones,
+          pais = EXCLUDED.pais,
+          estado = EXCLUDED.estado,
+          ciudad = EXCLUDED.ciudad,
+          codigo_postal = EXCLUDED.codigo_postal;
+    `;
+    const clienteValues = [identificacion, nombre, apellido, email, telefono, direccion, extras || '', pais, estado, ciudad, ''];
+    await client.query(insertClienteQuery, clienteValues);
 
-   // Crear pedido y productos en la base de datos
-   for (const product of products) {
-     const totalPrecio = product.quantity * product.price; // Cálculo del precio total por producto
-     const insertPedidoQuery = `
-       INSERT INTO pedidos (cliente_id, producto_id, cantidad, precio_total, metodo_pago, codigo_promocional, estado_pedido)
-       VALUES ($1, (SELECT id FROM productos WHERE name = $2 LIMIT 1), $3, $4, $5, $6, $7);
-     `;
-     const pedidoValues = [identificacion, product.name, product.quantity, totalPrecio, metodo_pago, promoCode, 'Pendiente'];
-     await client.query(insertPedidoQuery, pedidoValues);
-   }
+    // Obtener detalles de la sucursal desde la base de datos
+    const sucursalQuery = `
+      SELECT nombre_suc, propietario, direccion, telefono, email
+      FROM sucursal
+      WHERE nombre_suc = $1
+    `;
+    const sucursalResult = await client.query(sucursalQuery, [sucursal]);
+    const sucursalData = sucursalResult.rows[0];
+
+    // Crear un nuevo registro de factura en la base de datos
+    const facturaInsertQuery = `
+      INSERT INTO facturas (cliente_id, sucursal_id, fecha_emision, monto_total)
+      VALUES ($1, (SELECT id FROM sucursal WHERE nombre_suc = $2), NOW(), $3)
+      RETURNING id;
+    `;
+    const facturaResult = await client.query(facturaInsertQuery, [identificacion, sucursal, monto_total]);
+    const facturaId = facturaResult.rows[0].id;
+
+    // Crear pedido y productos en la base de datos
+    for (const product of products) {
+      const totalPrecio = product.quantity * product.price; // Cálculo del precio total por producto
+      const insertPedidoQuery = `
+        INSERT INTO pedidos (cliente_id, producto_id, cantidad, precio_total, metodo_pago, codigo_promocional, estado_pedido, factura_id)
+        VALUES ($1, (SELECT id FROM productos WHERE name = $2 LIMIT 1), $3, $4, $5, $6, $7, $8);
+      `;
+      const pedidoValues = [identificacion, product.name, product.quantity, totalPrecio, metodo_pago, promoCode, 'Pendiente', facturaId];
+      await client.query(insertPedidoQuery, pedidoValues);
+    }
 
     // Confirmación del pago con Stripe
     const payment = await stripe.paymentIntents.create({
@@ -132,20 +181,104 @@ app.post("/api/checkout", async (req, res) => {
 
     console.log(payment);
 
-    // Después de confirmar el pago, redirigir a la página principal
-    res.redirect("/");
+    // Directorio específico para las facturas
+    const invoiceDir = path.join(__dirname, 'facturas');
+    try {
+      if (!fs.existsSync(invoiceDir)) {
+        fs.mkdirSync(invoiceDir);  // Crear el directorio si no existe
+      }
+    } catch (err) {
+      console.error('Error al crear el directorio de facturas:', err);
+      return res.status(500).json({ message: 'Error al generar la factura' });
+    }
+
+    // Generar la factura en formato PDF
+    const doc = new PDFDocument({ size: 'A4' });
+    const invoicePath = path.join(invoiceDir, `factura_${facturaId}.pdf`);
+    const writeStream = fs.createWriteStream(invoicePath);
+    doc.pipe(writeStream);
+
+    // Encabezado de la factura
+    doc.fontSize(20).text('Factura', { align: 'center' });
+    doc.moveDown();
+    doc.fontSize(12).text(`Nro. de Factura: ${facturaId}`);
+    doc.text(`Fecha de Emisión: ${moment().format('DD/MM/YYYY')}`);
+    doc.moveDown();
+
+    // Información de la tienda
+    doc.fontSize(15).text('Robina´s Bakery', { align: 'left' });
+    doc.fontSize(12).text(`Sucursal: ${sucursalData.nombre_suc}`);
+    doc.text(`Propietario: ${sucursalData.propietario}`);
+    doc.text(`Dirección: ${sucursalData.direccion}`);
+    doc.text(`Teléfono: ${sucursalData.telefono}`);
+    doc.text(`Email: ${sucursalData.email}`);
+    doc.moveDown();
+
+    // Información del cliente
+    doc.fontSize(15).text('Detalles del Cliente:', { underline: true });
+    doc.fontSize(12).text(`Nombre: ${nombre} ${apellido}`);
+    doc.text(`RUC/CI: ${identificacion}`);
+    doc.moveDown();
+
+    // Detalles de los productos
+    doc.fontSize(15).text('Detalles de la Compra:', { underline: true });
+    products.forEach((product, index) => {
+      doc.fontSize(12).text(`${index + 1}. Producto: ${product.name}`);
+      doc.text(`   Cantidad: ${product.quantity}`);
+      doc.text(`   Precio Unitario: ${product.price}`);
+      doc.text(`   Precio Total: ${product.quantity * product.price}`);
+      doc.moveDown();
+    });
+
+    // Monto total
+    doc.fontSize(15).text(`Monto Total: ${monto_total}`, { align: 'right' });
+
+    doc.end();
+
+    writeStream.on('finish', () => {
+      console.log('Factura generada exitosamente.');
+      res.status(200).json({ message: 'Pago procesado y factura generada', facturaId });
+    });
+
+    writeStream.on('error', (err) => {
+      console.error('Error al generar la factura:', err);
+      return res.status(500).json({ message: 'Error al generar la factura' });
+    });
 
   } catch (error) {
     console.log(error);
-    return res.json({ message: error.raw.message });
+    return res.json({ message: error.raw ? error.raw.message : 'Error en el servidor' });
   }
 });
+
 
 app.post('/CheckoutForm', (req, res) => {
   const { quantity, totalPrice, productNamesAndQuantities } = req.body;
   console.log("Datos recibidos en el backend:", { quantity, totalPrice, productNamesAndQuantities });
 });
 
+// Ruta para recibir el formulario de contratación
+app.post('/api/contratacion', upload.fields([{ name: 'cv' }, { name: 'foto' }]), async (req, res) => {
+  try {
+    const { nombre, email, telefono, direccion, posicion, disponibilidad, carta_presentacion } = req.body;
+    const cvPath = req.files['cv'][0].path;
+    const fotoPath = req.files['foto'][0].path;
+
+    // Inserta los datos en la base de datos
+    const result = await client.query(
+      `INSERT INTO solicitudes (nombre, email, telefono, direccion, posicion, disponibilidad, carta_presentacion, cv, foto) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+      [nombre, email, telefono, direccion, posicion, disponibilidad, carta_presentacion, cvPath, fotoPath]
+    );
+
+    res.status(200).json({ message: 'Solicitud enviada exitosamente', solicitudId: result.rows[0].id });
+  } catch (error) {
+    console.error('Error al guardar los datos', error);
+    res.status(500).json({ message: 'Error al guardar los datos' });
+  }
+});
+
+//auth0 para inicios de sesion
 app.use(auth(config));
 
 app.get("/", (req, res) => {

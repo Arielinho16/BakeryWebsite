@@ -17,13 +17,11 @@ export const ShoppingCart = () => {
         <div className="cart-title">Mi carrito: </div>
 
         {cart.map((item, index) => (
-          <div key={index} className="cart-box">
+          <div key={index} className="cart-box" >
             <div className="name-box">{item.name}</div>
             <div className="item-quantity">{item.quantity}</div>
-            <img
+            <img style={{ width: "140px", height: "140px" }}
               src={item.imgUrl}
-              width="120"
-              height="100"
               alt={item.name}
             />
           </div>

@@ -129,10 +129,11 @@ export const CheckoutForm = () => {
     const estado = document.getElementById('state').value;
     const ciudad = document.getElementById('city').value;
     const indicaciones = document.getElementById('address2').value;
+    const sucursal = document.getElementById('availability').value;
   
     
 
-    if (!nombre || !apellido || !direccion || !email || !telefono || !identificacion || !pais || !estado || !ciudad || !indicaciones ) {
+    if (!nombre || !apellido || !direccion || !email || !telefono || !identificacion || !pais || !estado || !ciudad || !indicaciones || !indicaciones || !sucursal) {
 
       playSound('/sounds/error.mp3');
       setShowModalForm(true);
@@ -168,6 +169,7 @@ export const CheckoutForm = () => {
               estado: estado,
               ciudad: ciudad,
               extras: indicaciones,
+              sucursal: sucursal,
               metodo_pago: confirmPaymentMethod, //si es debito o credito
               promoCode: usedPromoCode || null, // Enviar null si no hay código promocional
               monto_total: totalPrice,
@@ -222,8 +224,8 @@ export const CheckoutForm = () => {
         <div className="row g-5">
           <div className="col-md-5 col-lg-4 order-md-last">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span id="cart-checkout" className="text-primary" color="black">Tu carrito</span>
-              <span id="cart-counter-checkout" className="badge bg-primary rounded-pill" color="white" background-color ="rgba(121, 119, 119, 0.5)">{quantity}</span>
+              <span id="cart-checkout" className="text-primary" style={{ color: "white" }}>Tu carrito</span>
+              <span id="cart-counter-checkout" className="badge bg-primary rounded-pill" style={{ backgroundColor: "#8b321e", color: "white" }}>{quantity}</span>
             </h4>
             <ul className="list-group mb-3">
               {cart.map((item, index) => (
@@ -363,6 +365,16 @@ export const CheckoutForm = () => {
                   </div>
                 </div>
 
+                <div className="mb-3">
+                  <label htmlFor="availability" className="form-label">Sucursal de Preferencia</label>
+                  <select className="form-select" id="availability" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="Casa Central, Asunción Centro">Casa Central, Asunción Centro</option>
+                    <option value="Sucursal La Cuadrita">Sucursal La Cuadrita</option>
+                    <option value="Sucursal Avda. España">Sucursal Avda. España</option>
+                  </select>
+                </div>
+
                 <div className="col-md-2">
                   <label htmlFor="zip" className="form-label">Código Postal (Optional)</label>
                   <input type="text" className="form-control" id="zip" placeholder=""  />
@@ -373,11 +385,6 @@ export const CheckoutForm = () => {
               </div>
 
               <hr className="my-4" />
-
-              <div className="form-check">
-                <input type="checkbox" className="form-check-input" id="same-address" />
-                <label className="form-check-label" htmlFor="same-address">La dirección de envío es la misma que mi dirección de facturación</label>
-              </div>
 
               <div className="form-check">
                 <input type="checkbox" className="form-check-input" id="save-info" />
@@ -396,11 +403,11 @@ export const CheckoutForm = () => {
           <div className="my-3">
               <div className="form-check custom-checkbox">
                 <input id="credit" name="paymentMethod" type="radio" className="form-check-input" value="credito" checked={cardMethod === 'credito'} onChange={handlePaymentMethod} required />
-                <label className="form-check-label" htmlFor="credit" style={{ fontSize: "20px", fontWeight: "30px" }}>Crédito</label>
+                <label className="form-check-label" htmlFor="credit" style={{ fontSize: "22px", fontWeight: "33px" }}>Crédito</label>
               </div>
               <div className="form-check custom-checkbox">
                 <input id="debit" name="paymentMethod" type="radio" className="form-check-input" value="debito" checked={cardMethod === 'debito'} onChange={handlePaymentMethod} required />
-                <label className="form-check-label" htmlFor="debit" style={{ fontSize: "20px", fontWeight: "30px" }}>Débito</label>
+                <label className="form-check-label" htmlFor="debit" style={{ fontSize: "22px", fontWeight: "33px" }}>Débito</label>
               </div>
             </div>
             {/* User Card Input */}
