@@ -198,20 +198,19 @@ app.post("/api/checkout", async (req, res) => {
     const writeStream = fs.createWriteStream(invoicePath);
     doc.pipe(writeStream);
 
-    // Encabezado de la factura
-    doc.fontSize(20).text('Factura', { align: 'center' });
-    doc.moveDown();
-    doc.fontSize(12).text(`Nro. de Factura: ${facturaId}`);
-    doc.text(`Fecha de Emisión: ${moment().format('DD/MM/YYYY')}`);
+    // Encabezado de la Tienda
+    doc.fontSize(25).text('Factura', { align: 'center' });
+    doc.fontSize(15).text('Robina´s Bakery', { align: 'center' });
+    doc.fontSize(12).text(`Sucursal: ${sucursalData.nombre_suc}`, { align: 'center' });
+    doc.text(`Propietario: ${sucursalData.propietario}`, { align: 'center' });
+    doc.text(`Dirección: ${sucursalData.direccion}`, { align: 'center' });
+    doc.text(`Teléfono: ${sucursalData.telefono}`, { align: 'center' });
+    doc.text(`Email: ${sucursalData.email}`, { align: 'center' });
     doc.moveDown();
 
-    // Información de la tienda
-    doc.fontSize(15).text('Robina´s Bakery', { align: 'left' });
-    doc.fontSize(12).text(`Sucursal: ${sucursalData.nombre_suc}`);
-    doc.text(`Propietario: ${sucursalData.propietario}`);
-    doc.text(`Dirección: ${sucursalData.direccion}`);
-    doc.text(`Teléfono: ${sucursalData.telefono}`);
-    doc.text(`Email: ${sucursalData.email}`);
+    // Información de la factura
+    doc.fontSize(12).text(`Nro. de Factura: ${facturaId}`);
+    doc.text(`Fecha de Emisión: ${moment().format('DD/MM/YYYY')}`);
     doc.moveDown();
 
     // Información del cliente
