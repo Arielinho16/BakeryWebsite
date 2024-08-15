@@ -58,7 +58,8 @@ const NavBarControlled = () => {
 
   // Ocultar el NavBar en la ruta de checkout
   if (location.pathname === '/checkout' || location.pathname === '/' || location.pathname === '/contratacion' ||
-    location.pathname === '/empresa' || location.pathname === '/nosotros' || location.pathname === '/locales') 
+    location.pathname === '/empresa' || location.pathname === '/nosotros' || location.pathname === '/locales'
+    || location.pathname === '/cart') 
     return null;
 
   return <NavBar />;

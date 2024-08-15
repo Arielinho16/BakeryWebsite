@@ -167,7 +167,8 @@
 .cart-title{
   display: flex;
   text-align:center; /* Centra el texto */
-  font-size: 300%; /* Tamaño de fuente */
+  font-size: 280%;
+    /* Tamaño de fuente */
   color: white; /* Color del texto */
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
@@ -295,14 +296,14 @@ box-shadow: 2px 2px 2px #000800;
   color: white;
 }
 
-#cart-checkout .text-primary{
+#cart-checkout {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-style: normal;
   color: white;
 }
 
-#cart-counter-checkout .badge{
+#cart-counter-checkout {
   background-color: #8b321e;
     /* Blanco con 50% de opacidad */
   color: white;
@@ -323,14 +324,17 @@ box-shadow: 2px 2px 2px #000800;
 }
 
 .card.card-body {
-  width: 350px; /* Ancho de la tarjeta */
-  height: 200px; /* Alto de la tarjeta */
+  width: 380px;
+    /* Ancho de la tarjeta */
+    height: 230px;
+    /* Alto de la tarjeta */
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
   border: 1px solid #ccc; /* Borde sólido */
   padding: 20px; /* Espacio interno */
   background-image: url('/public/images/tarjetaFondo.png'); /* Ruta de la imagen de fondo */
-  background-size: 370px; /* Cubrir todo el área del elemento */
+  background-size: 500px;
+    /* Cubrir todo el área del elemento */
   background-position: center; /* Centrar la imagen */
 }
 

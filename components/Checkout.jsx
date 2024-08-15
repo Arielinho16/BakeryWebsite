@@ -224,8 +224,11 @@ export const CheckoutForm = () => {
         <div className="row g-5">
           <div className="col-md-5 col-lg-4 order-md-last">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span id="cart-checkout" className="text-primary" style={{ color: "white" }}>Tu carrito</span>
-              <span id="cart-counter-checkout" className="badge bg-primary rounded-pill" style={{ backgroundColor: "#8b321e", color: "white" }}>{quantity}</span>
+              <span id="cart-checkout">Tu carrito</span>
+              <span id="cart-counter-checkout" style={{
+                backgroundColor: "#5d2417", color: "white", border: "1px solid whitesmoke",
+                borderRadius: "100%", width: "10%", padding: "5px", alignItems: "center"
+              }}>{quantity}</span>
             </h4>
             <ul className="list-group mb-3">
               {cart.map((item, index) => (
@@ -403,11 +406,11 @@ export const CheckoutForm = () => {
           <div className="my-3">
               <div className="form-check custom-checkbox">
                 <input id="credit" name="paymentMethod" type="radio" className="form-check-input" value="credito" checked={cardMethod === 'credito'} onChange={handlePaymentMethod} required />
-                <label className="form-check-label" htmlFor="credit" style={{ fontSize: "22px", fontWeight: "33px" }}>Crédito</label>
+                <label className="form-check-label" htmlFor="credit" style={{ fontSize: "22px", fontWeight: "36px" }}>Crédito</label>
               </div>
               <div className="form-check custom-checkbox">
                 <input id="debit" name="paymentMethod" type="radio" className="form-check-input" value="debito" checked={cardMethod === 'debito'} onChange={handlePaymentMethod} required />
-                <label className="form-check-label" htmlFor="debit" style={{ fontSize: "22px", fontWeight: "33px" }}>Débito</label>
+                <label className="form-check-label" htmlFor="debit" style={{ fontSize: "22px", fontWeight: "36px" }}>Débito</label>
               </div>
             </div>
             {/* User Card Input */}
