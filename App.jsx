@@ -15,6 +15,8 @@ import { Empresa } from "./components/empresa";
 import { Contrato } from "./components/contratacion";
 import { Local } from "./components/locales";
 import { Contacto } from "./components/Contacto";
+
+
 // Agrega aquí tu clave pública de Stripe
 const stripePromise = loadStripe("pk_test_51OmmqBK4P6Uiq4axZvTPwvHJhu5JIHJB9zufHtZ2WmuWRwJqUH8iHOf9hNFug4XYA4kOvcD2Jqjp3nMzEMOMUv88000vxGvHGn");
 
