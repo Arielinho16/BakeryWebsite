@@ -259,15 +259,15 @@ app.post('/CheckoutForm', (req, res) => {
 // Ruta para recibir el formulario de contratación
 app.post('/api/contratacion', upload.fields([{ name: 'cv' }, { name: 'foto' }]), async (req, res) => {
   try {
-    const { nombre, email, telefono, direccion, posicion, disponibilidad, carta_presentacion } = req.body;
+    const { nombre, identidad, email, telefono, direccion, posicion, disponibilidad, carta_presentacion } = req.body;
     const cvPath = req.files['cv'][0].path;
     const fotoPath = req.files['foto'][0].path;
 
     // Inserta los datos en la base de datos
     const result = await client.query(
-      `INSERT INTO solicitudes (nombre, email, telefono, direccion, posicion, disponibilidad, carta_presentacion, cv, foto) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
-      [nombre, email, telefono, direccion, posicion, disponibilidad, carta_presentacion, cvPath, fotoPath]
+      `INSERT INTO solicitudes (nombre_completo,identidad, email, telefono, direccion, posicion, disponibilidad, carta_presentacion, cv, foto) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9,$10) RETURNING id`,
+      [nombre, identidad, email, telefono, direccion, posicion, disponibilidad, carta_presentacion, cvPath, fotoPath]
     );
 
     res.status(200).json({ message: 'Solicitud enviada exitosamente', solicitudId: result.rows[0].id });
@@ -276,6 +276,31 @@ app.post('/api/contratacion', upload.fields([{ name: 'cv' }, { name: 'foto' }]),
     res.status(500).json({ message: 'Error al guardar los datos' });
   }
 });
+
+app.post('/api/contacto', async (req, res) => {
+  try {
+    const { nombre, email, area, comentarios, politicaAceptada } = req.body;
+
+    // Asegurarse de que todos los campos requeridos están presentes
+    if (!nombre || !email || !area || !comentarios || politicaAceptada === undefined) {
+      return res.status(400).json({ message: 'Todos los campos son requeridos' });
+    }
+
+    // Inserta los datos en la base de datos
+    const result = await client.query(
+      `INSERT INTO contacto (nombre, email, area, comentarios, politica) 
+       VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+      [nombre, email, area, comentarios, politicaAceptada]
+    );
+
+    res.status(200).json({ message: 'Solicitud enviada exitosamente', solicitudId: result.rows[0].id });
+  } catch (error) {
+    console.error('Error al guardar los datos:', error);
+    res.status(500).json({ message: 'Error al guardar los datos' });
+  }
+});
+
+
 
 //auth0 para inicios de sesion
 app.use(auth(config));

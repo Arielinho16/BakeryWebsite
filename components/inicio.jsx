@@ -219,6 +219,7 @@ export const Index = () => {
                 </div>
             </div>
 
+
             <footer className="container">
                 <p className="float-end">
                     <a href="#">Volver arriba</a>

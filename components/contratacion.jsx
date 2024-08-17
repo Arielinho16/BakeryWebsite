@@ -5,64 +5,79 @@ export const Contrato = () => {
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    // Estados para manejar los valores de los campos
+    const [nombre, setNombre] = useState('');
+    const [identidad, setIdentidad] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [direccion, setDireccion] = useState('');
+    const [posicion, setPosicion] = useState('');
+    const [disponibilidad, setDisponibilidad] = useState('');
+    const [cartaPresentacion, setCartaPresentacion] = useState('');
+    const [cvFile, setCvFile] = useState(null);
+    const [fotoFile, setFotoFile] = useState(null);
+
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const nombre = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
-        const telefono = document.getElementById('phone').value;
-        const direccion = document.getElementById('address').value;
-        const posicion = document.getElementById('position').value;
-        const disponibilidad = document.getElementById('availability').value;
-        const carta_presentacion = document.getElementById('coverLetter').value;
-        const cvFile = document.getElementById('cv').files[0];
-        const fotoFile = document.getElementById('foto').files[0];
-
-        if (!nombre || !email || !telefono || !direccion || !posicion || !disponibilidad || !carta_presentacion || !cvFile || !fotoFile) {
-            // Reproducir sonido de error o mostrar modal de error si algún campo está vacío
+        if (!nombre || !identidad || !email || !telefono || !direccion || !posicion || !disponibilidad || !cartaPresentacion || !cvFile || !fotoFile) {
             console.error("Faltan campos por llenar");
-        } else {
-            setLoading(true);
+            return;
+        }
 
-            try {
-                // Crear FormData para enviar datos y archivos
-                const formData = new FormData();
-                formData.append('nombre', nombre);
-                formData.append('email', email);
-                formData.append('telefono', telefono);
-                formData.append('direccion', direccion);
-                formData.append('posicion', posicion);
-                formData.append('disponibilidad', disponibilidad);
-                formData.append('carta_presentacion', carta_presentacion);
-                formData.append('cv', cvFile); // Añadir el archivo CV
-                formData.append('foto', fotoFile); // Añadir el archivo de la foto
+        setLoading(true);
 
-                // Enviar los datos al backend
-                const { data } = await axios.post(
-                    "http://localhost:3000/api/contratacion",
-                    formData,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+        try {
+            // Crear FormData para enviar datos y archivos
+            const formData = new FormData();
+            formData.append('nombre', nombre);
+            formData.append('identidad', identidad);
+            formData.append('email', email);
+            formData.append('telefono', telefono);
+            formData.append('direccion', direccion);
+            formData.append('posicion', posicion);
+            formData.append('disponibilidad', disponibilidad);
+            formData.append('carta_presentacion', cartaPresentacion);
+            formData.append('cv', cvFile);
+            formData.append('foto', fotoFile);
+
+            // Enviar los datos al backend
+            const { data } = await axios.post(
+                "http://localhost:3000/api/contratacion",
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
-                );
+                }
+            );
 
-                console.log("Datos enviados:", data);
+            console.log("Datos enviados:", data);
 
-                // Mostrar el modal de éxito aquí
-                setShowModal(true);
+            // Mostrar el modal de éxito aquí
+            setShowModal(true);
 
-            } catch (error) {
-                console.error("Error al enviar los datos:", error);
-            } finally {
-                setLoading(false);
-            }
+            // Restablecer los valores de los campos
+            setNombre('');
+            setIdentidad('');
+            setEmail('');
+            setTelefono('');
+            setDireccion('');
+            setPosicion('');
+            setDisponibilidad('');
+            setCartaPresentacion('');
+            setCvFile(null);
+            setFotoFile(null);
+
+        } catch (error) {
+            console.error("Error al enviar los datos:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div>
+        <div className="formularioSolicitud">
             <div className="container mt-5">
                 <h2 className="text-center mb-4" id="empresa-title" style={{ marginBottom: '30px' }}>Trabaja con Nosotros</h2>
 
@@ -78,23 +93,73 @@ export const Contrato = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="fullName" className="form-label">Nombre Completo</label>
-                        <input type="text" className="form-control" id="fullName" placeholder="Nombre Completo" required />
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="fullName"
+                            placeholder="Nombre Completo"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="identidad" className="form-label">Identificación</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="identidad"
+                            placeholder="Cedula de Identidad"
+                            value={identidad}
+                            onChange={(e) => setIdentidad(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Correo Electrónico</label>
-                        <input type="email" className="form-control" id="email" placeholder="nombre@ejemplo.com" required />
+                        <input
+                            type="email"
+                            className="form-control"
+                            id="email"
+                            placeholder="nombre@ejemplo.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="phone" className="form-label">Teléfono</label>
-                        <input type="tel" className="form-control" id="phone" placeholder="123-456-7890" required />
+                        <input
+                            type="tel"
+                            className="form-control"
+                            id="phone"
+                            placeholder="123-456-7890"
+                            value={telefono}
+                            onChange={(e) => setTelefono(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="address" className="form-label">Dirección</label>
-                        <input type="text" className="form-control" id="address" placeholder="Calle, Número, Ciudad, Estado, Código Postal" required />
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="address"
+                            placeholder="Calle, Número, Ciudad, Estado, Código Postal"
+                            value={direccion}
+                            onChange={(e) => setDireccion(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="position" className="form-label">Posición Deseada</label>
-                        <select className="form-select" id="position" required>
+                        <select
+                            className="form-select"
+                            id="position"
+                            value={posicion}
+                            onChange={(e) => setPosicion(e.target.value)}
+                            required
+                        >
                             <option value="">Seleccione una opción</option>
                             <option value="Chef">Chef</option>
                             <option value="Barista">Barista</option>
@@ -104,7 +169,13 @@ export const Contrato = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="availability" className="form-label">Disponibilidad Horaria</label>
-                        <select className="form-select" id="availability" required>
+                        <select
+                            className="form-select"
+                            id="availability"
+                            value={disponibilidad}
+                            onChange={(e) => setDisponibilidad(e.target.value)}
+                            required
+                        >
                             <option value="">Seleccione una opción</option>
                             <option value="Tiempo Completo">Tiempo Completo</option>
                             <option value="Medio Tiempo">Medio Tiempo</option>
@@ -113,15 +184,35 @@ export const Contrato = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="cv" className="form-label">Adjuntar CV</label>
-                        <input className="form-control" type="file" id="cv" required />
+                        <input
+                            className="form-control"
+                            type="file"
+                            id="cv"
+                            onChange={(e) => setCvFile(e.target.files[0])}
+                            required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="foto" className="form-label">Adjuntar Foto</label>
-                        <input className="form-control" type="file" id="foto" required />
+                        <input
+                            className="form-control"
+                            type="file"
+                            id="foto"
+                            onChange={(e) => setFotoFile(e.target.files[0])}
+                            required
+                        />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="coverLetter" className="form-label">Carta de Presentación</label>
-                        <textarea className="form-control" id="coverLetter" rows="4" placeholder="Escribe una breve carta de presentación..."></textarea>
+                        <textarea
+                            className="form-control"
+                            id="coverLetter"
+                            rows="4"
+                            placeholder="Escribe una breve carta de presentación..."
+                            value={cartaPresentacion}
+                            onChange={(e) => setCartaPresentacion(e.target.value)}
+                            required
+                        ></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary" style={{
                         margin: "0 auto",
@@ -173,5 +264,6 @@ export const Contrato = () => {
         </div>
     );
 };
+
 
 

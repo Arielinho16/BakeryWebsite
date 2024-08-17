@@ -386,31 +386,23 @@ export const CheckoutForm = () => {
                   </div>
                 </div>
               </div>
-
-              <hr className="my-4" />
-
-              <div className="form-check">
-                <input type="checkbox" className="form-check-input" id="save-info" />
-                <label className="form-check-label" htmlFor="save-info">Recordarme</label>
-              </div>
-
               <hr className="my-4" />
             </form>
           </div>
         </div>
 
         {/* Formulario de pago */}
-        <h4 className="mb-3">Pagos</h4>
+        <h2 className="mb-3">Pagos</h2>
         <div className="col-md-7 col-lg-8">
           <form className="card card-body" onSubmit={handleSubmit}>
           <div className="my-3">
               <div className="form-check custom-checkbox">
                 <input id="credit" name="paymentMethod" type="radio" className="form-check-input" value="credito" checked={cardMethod === 'credito'} onChange={handlePaymentMethod} required />
-                <label className="form-check-label" htmlFor="credit" style={{ fontSize: "22px", fontWeight: "36px" }}>Crédito</label>
+                <label className="form-check-label" htmlFor="credit" id="tarjetaStyle">Crédito</label>
               </div>
               <div className="form-check custom-checkbox">
                 <input id="debit" name="paymentMethod" type="radio" className="form-check-input" value="debito" checked={cardMethod === 'debito'} onChange={handlePaymentMethod} required />
-                <label className="form-check-label" htmlFor="debit" style={{ fontSize: "22px", fontWeight: "36px" }}>Débito</label>
+                <label className="form-check-label" htmlFor="debit" id="tarjetaStyle">Débito</label>
               </div>
             </div>
             {/* User Card Input */}
@@ -455,18 +447,7 @@ export const CheckoutForm = () => {
                     <p>Tu pago se ha procesado con éxito.</p>
                   </div>
                   <div className="modal-footer">
-                    <button onClick={handleCloseModal} className="btn btn-secondary"
-                      style={{
-                        margin: "0 auto",
-                        backgroundColor: "#5d2417",
-                        width: "200px",
-                        padding: "0.5em",
-                        border: "1px solid whitesmoke",
-                        borderRadius: "5px",
-                        boxShadow: "5px 5px 5px #000800",
-                        color: "white",
-                        textDecoration: "none"
-                      }}>Listo</button>
+                    <button onClick={handleCloseModal} className="btn btn-secondary">Listo</button>
                     
                   </div>
                 </div>

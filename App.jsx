@@ -14,7 +14,7 @@ import { Informacion } from "./components/nosotros";
 import { Empresa } from "./components/empresa";
 import { Contrato } from "./components/contratacion";
 import { Local } from "./components/locales";
-
+import { Contacto } from "./components/Contacto";
 // Agrega aquí tu clave pública de Stripe
 const stripePromise = loadStripe("pk_test_51OmmqBK4P6Uiq4axZvTPwvHJhu5JIHJB9zufHtZ2WmuWRwJqUH8iHOf9hNFug4XYA4kOvcD2Jqjp3nMzEMOMUv88000vxGvHGn");
 
@@ -29,6 +29,7 @@ export const App = () => {
           <Route exact path="/empresa" element={<Empresa />} />
           <Route exact path="/contratacion" element={<Contrato />} />
           <Route exact path="/locales" element={<Local />} />
+          <Route exact path="/contacto" element={<Contacto />} />
           <Route path="/user" element={<ItemList category="usuario" />} />
           <Route path="/menu" element={<Layout title="Menú"><ItemListforMenu category="menu" /> </Layout>} />
           <Route path="/dulces" element={<Layout title="Dulces"><ItemList category="dulces" /> </Layout>} />
@@ -59,7 +60,7 @@ const NavBarControlled = () => {
   // Ocultar el NavBar en la ruta de checkout
   if (location.pathname === '/checkout' || location.pathname === '/' || location.pathname === '/contratacion' ||
     location.pathname === '/empresa' || location.pathname === '/nosotros' || location.pathname === '/locales'
-    || location.pathname === '/cart') 
+    || location.pathname === '/cart' || location.pathname === '/contacto') 
     return null;
 
   return <NavBar />;

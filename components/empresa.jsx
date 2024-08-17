@@ -44,27 +44,27 @@ export const Empresa = () => {
                         <p>
                             Estos términos y condiciones describen las reglas y regulaciones para el uso del sitio web de Robina's Bakery, ubicado en robinasbakery.com.
                         </p>
-                        <p>Uso del Sitio</p>
+                        <p id='terminos'>Uso del Sitio</p>
                         <p>
                             Al acceder a este sitio web asumimos que aceptas estos términos y condiciones. No continúes usando Robina's Bakery si no estás de acuerdo con todos los términos y condiciones establecidos en esta página.
                         </p>
-                        <p>Cookies</p>
+                        <p id='terminos'>Cookies</p>
                         <p>
                             Empleamos el uso de cookies. Al acceder a Robina's Bakery, aceptas utilizar cookies de acuerdo con la política de privacidad de Robina's Bakery.
                         </p>
-                        <p>Licencia</p>
+                        <p id='terminos'>Licencia</p>
                         <p>
                             A menos que se indique lo contrario, Robina's Bakery y/o sus licenciantes poseen los derechos de propiedad intelectual de todo el material en Robina's Bakery. Todos los derechos de propiedad intelectual están reservados. Puedes acceder a esto desde Robina's Bakery para tu uso personal sujeto a las restricciones establecidas en estos términos y condiciones.
                         </p>
-                        <p>Contenido del Usuario</p>
+                        <p id='terminos'>Contenido del Usuario</p>
                         <p>
                             Partes de este sitio web ofrecen a los usuarios la oportunidad de publicar e intercambiar opiniones e información en ciertas áreas del sitio web. Robina's Bakery no filtra, edita, publica ni revisa los comentarios antes de su presencia en el sitio web. Los comentarios no reflejan los puntos de vista ni las opiniones de Robina's Bakery, sus agentes y/o afiliados.
                         </p>
-                        <p>Enlaces Externos</p>
+                        <p id='terminos'>Enlaces Externos</p>
                         <p>
                             Nuestro servicio puede contener enlaces a sitios web o servicios de terceros que no son propiedad ni están controlados por Robina's Bakery. Robina's Bakery no tiene control sobre, y no asume ninguna responsabilidad por, el contenido, las políticas de privacidad o las prácticas de los sitios web o servicios de terceros.
                         </p>
-                        <p>Modificaciones</p>
+                        <p id='terminos'>Modificaciones</p>
                         <p>
                             Robina's Bakery se reserva el derecho de revisar estos términos y condiciones en cualquier momento. Al utilizar este sitio web, aceptas estar sujeto a la versión actual de estos términos y condiciones.
                         </p>

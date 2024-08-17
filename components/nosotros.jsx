@@ -45,7 +45,7 @@ export const Informacion = () => {
 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal lh-1" style={{ fontSize: "300%" }}>Chef Cedric Grolet</h2>
+                        <h2 className="featurette-heading fw-normal lh-1">Chef Cedric Grolet</h2>
                         <p className="lead" style={{ fontSize: "150%" }}>Nuestro chef principal deleitando con una de sus especialidades</p>
                         <a href="https://www.tiktok.com/@cedricgrolet" style={{ fontSize: "100%" }}>Ver en Tiktok</a>
                     </div>
@@ -61,7 +61,7 @@ export const Informacion = () => {
 
                 <div className="row featurette">
                     <div className="col-md-7 order-md-2">
-                        <h2 className="featurette-heading fw-normal lh-1" style={{ fontSize: "300%" }}>Chef Magri Alberto</h2>
+                        <h2 className="featurette-heading fw-normal lh-1">Chef Magri Alberto</h2>
                         <p className="lead" style={{ fontSize: "150%" }}>Nuestro otro chef principal preparando una de sus especialidades</p>
                         <a href="https://www.tiktok.com/@pastrychef_am" style={{ fontSize: "100%" }}>Ver en Tiktok</a>
                     </div>
